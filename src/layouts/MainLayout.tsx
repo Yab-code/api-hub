@@ -143,7 +143,7 @@ const MainLayout: React.FC = () => {
             </ul>
           </div>
           <div className="space-y-md">
-            <h4 class="font-body-md text-body-md font-semibold text-on-background">Resources</h4>
+            <h4 className="font-body-md text-body-md font-semibold text-on-background">Resources</h4>
             <ul className="space-y-sm">
               <li><a href="#docs" className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100">Documentation</a></li>
               <li><a href="#reference" className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100">API Reference</a></li>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { apiHubService } from '../services/api';
-import { ApiItem } from '../services/mockDb';
+import type { ApiItem } from '../services/mockDb';
 
 const LandingPage: React.FC = () => {
   const navigate = useNavigate();

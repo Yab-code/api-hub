@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { mockDb, User, ApiItem, Collection, ActivityLog } from './mockDb';
+import { mockDb } from './mockDb';
+import type { User, ApiItem, Collection, ActivityLog } from './mockDb';
 
 const API_URL = import.meta.env.VITE_API_URL || 'https://api.apihub.com/v1';
 
@@ -50,7 +51,7 @@ api.interceptors.response.use(
 const delay = (ms = 400) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const authService = {
-  login: async (email: string, password?: string): Promise<{ token: string; user: User }> => {
+  login: async (email: string, _password?: string): Promise<{ token: string; user: User }> => {
     await delay(600); // Simulate network latency
     const users = mockDb.getUsers();
     const user = users.find((u) => u.email.toLowerCase() === email.toLowerCase());
