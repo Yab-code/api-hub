@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>APIHub Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#c3c0ff",
+                    "outline-variant": "#c7c4d8",
+                    "on-tertiary-container": "#67f4b7",
+                    "error": "#ba1a1a",
+                    "surface": "#f8f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#dad7ff",
+                    "tertiary-container": "#006e4b",
+                    "secondary": "#565e74",
+                    "primary-container": "#4f46e5",
+                    "on-secondary-container": "#5c647a",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#dae2fd",
+                    "outline": "#777587",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#213145",
+                    "on-surface-variant": "#464555",
+                    "on-tertiary-fixed": "#002113",
+                    "surface-dim": "#cbdbf5",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-background": "#0b1c30",
+                    "surface-variant": "#d3e4fe",
+                    "on-primary-fixed": "#0f0069",
+                    "inverse-on-surface": "#eaf1ff",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#e5eeff",
+                    "primary-fixed": "#e2dfff",
+                    "surface-container-highest": "#d3e4fe",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "surface-container-high": "#dce9ff",
+                    "surface-tint": "#4d44e3",
+                    "tertiary": "#005338",
+                    "surface-container-low": "#eff4ff",
+                    "inverse-primary": "#c3c0ff",
+                    "on-tertiary": "#ffffff",
+                    "on-surface": "#0b1c30",
+                    "surface-bright": "#f8f9ff",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "background": "#f8f9ff",
+                    "secondary-fixed": "#dae2fd",
+                    "primary": "#3525cd",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#131b2e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "gutter": "24px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "2xl": "48px",
+                    "3xl": "64px",
+                    "md": "16px",
+                    "base": "4px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "code": ["Geist Mono"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "code": ["14px", {"lineHeight": "20px", "fontWeight": "450"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #f8f9ff; color: #0b1c30; }
+        .glass { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .active-tab { border-left: 4px solid #3525cd; background-color: rgba(79, 70, 229, 0.05); color: #3525cd; }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm h-16">
+<div class="flex justify-between items-center px-lg h-full w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-xl">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">APIHub</span>
+<div class="hidden md:flex gap-lg">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Solutions</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Docs</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">help_outline</button>
+<button class="bg-primary-container text-on-primary-container px-md py-sm rounded-lg font-bold active:scale-95 transition-transform">Create API</button>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close-up professional portrait of a software engineer with soft studio lighting and a clean, high-tech office background in the distance. The aesthetic is modern corporate with a cool blue and indigo color palette, reflecting a high-performance developer ecosystem." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_4Ks5wnJV8i8mJLwZNHV7qsW-5HaS16N_KKDipRYriIponvx6THytgDlkjabc-HDX5EAUuOmwRhpBvaHTQaJp4TnGYo_eXLs_tSYAE6ciR_hphroDQJ3vEtseu9v9TNy0CmVO_SRSBN1GJdsZLaPUFnMmP9BS0otNk2uvwVwjQqD9sUeW5CqoPXTqoX00580upjYvG2guAfuBhepgcyOrsTV5dfz6DIKbMdMs2Ioxsy2YzN58-p7JXvJkidcJzhQeNSmLpKp7uN0s"/>
+</div>
+</div>
+</div>
+</nav>
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-surface-container-low/80 backdrop-blur-lg border-r border-outline-variant/20 flex flex-col py-md gap-xs">
+<div class="px-md mb-lg">
+<div class="flex items-center gap-sm p-sm">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white">api</span>
+</div>
+<div>
+<p class="font-bold text-primary">Project Workspace</p>
+<p class="text-xs text-on-surface-variant">Production Environment</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-sm space-y-1">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant/50 hover:translate-x-1 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-sm text-body-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant/50 hover:translate-x-1 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-body-sm text-body-sm">Explorer</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant/50 hover:translate-x-1 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">api</span>
+<span class="font-body-sm text-body-sm">My APIs</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm bg-primary-container/10 text-primary border-l-4 border-primary rounded-r-lg hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-sm text-body-sm font-bold">Settings</span>
+</a>
+</nav>
+<div class="px-sm mt-auto space-y-1">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant/50 hover:translate-x-1 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-body-sm text-body-sm">Documentation</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-error hover:bg-error-container/10 hover:translate-x-1 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-sm text-body-sm">Log out</span>
+</a>
+<div class="p-md mt-md">
+<button class="w-full py-sm bg-primary text-white rounded-lg font-bold shadow-sm active:scale-95 transition-transform">Upgrade Plan</button>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-64 mt-16 p-lg bg-surface min-h-[calc(100vh-64px)]">
+<div class="max-w-container-max mx-auto flex gap-xl">
+<!-- Page Specific Sidebar Tabs -->
+<nav class="w-64 flex flex-col gap-sm">
+<h1 class="font-headline-md text-headline-md mb-md">Settings</h1>
+<button class="setting-tab active-tab flex items-center gap-sm px-md py-sm rounded-lg text-left transition-all" onclick="scrollToSection('appearance')">
+<span class="material-symbols-outlined">palette</span>
+<span class="font-body-md">Appearance</span>
+</button>
+<button class="setting-tab flex items-center gap-sm px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-variant/50 text-left transition-all" onclick="scrollToSection('notifications')">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-body-md">Notifications</span>
+</button>
+<button class="setting-tab flex items-center gap-sm px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-variant/50 text-left transition-all" onclick="scrollToSection('security')">
+<span class="material-symbols-outlined">security</span>
+<span class="font-body-md">Security</span>
+</button>
+<button class="setting-tab flex items-center gap-sm px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-variant/50 text-left transition-all" onclick="scrollToSection('connected')">
+<span class="material-symbols-outlined">link</span>
+<span class="font-body-md">Connected Accounts</span>
+</button>
+</nav>
+<!-- Settings Form Canvas -->
+<div class="flex-1 space-y-lg">
+<!-- Appearance Section -->
+<section class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm" id="appearance">
+<div class="mb-lg">
+<h2 class="font-headline-sm text-headline-sm mb-xs">Appearance</h2>
+<p class="text-on-surface-variant text-body-sm">Customize how APIHub looks on your device.</p>
+</div>
+<div class="space-y-xl">
+<div>
+<label class="block font-bold text-body-sm mb-md uppercase tracking-wider text-outline">Theme Mode</label>
+<div class="grid grid-cols-2 gap-md max-w-md">
+<button class="flex flex-col gap-sm p-md border-2 border-primary bg-primary-container/5 rounded-xl text-left">
+<div class="w-full h-20 bg-white rounded-lg border border-outline-variant shadow-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">light_mode</span>
+</div>
+<span class="font-bold text-primary">Light Mode</span>
+</button>
+<button class="flex flex-col gap-sm p-md border border-outline-variant rounded-xl text-left hover:border-primary/50 transition-colors">
+<div class="w-full h-20 bg-slate-900 rounded-lg border border-slate-700 shadow-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl">dark_mode</span>
+</div>
+<span class="font-bold text-on-surface-variant">Dark Mode</span>
+</button>
+</div>
+</div>
+<div>
+<label class="block font-bold text-body-sm mb-md uppercase tracking-wider text-outline">Accent Color</label>
+<div class="flex gap-md">
+<button class="w-10 h-10 rounded-full bg-[#4f46e5] ring-4 ring-primary-container/20 border-2 border-white flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm">check</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-[#006e4b] hover:scale-110 transition-transform"></button>
+<button class="w-10 h-10 rounded-full bg-[#ba1a1a] hover:scale-110 transition-transform"></button>
+<button class="w-10 h-10 rounded-full bg-[#213145] hover:scale-110 transition-transform"></button>
+</div>
+</div>
+</div>
+</section>
+<!-- Notifications Section -->
+<section class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm" id="notifications">
+<div class="mb-lg">
+<h2 class="font-headline-sm text-headline-sm mb-xs">Notifications</h2>
+<p class="text-on-surface-variant text-body-sm">Manage when and how you receive alerts.</p>
+</div>
+<div class="space-y-md">
+<div class="flex items-center justify-between p-md bg-surface-container-low rounded-lg">
+<div class="flex gap-md items-center">
+<span class="material-symbols-outlined text-primary">mail</span>
+<div>
+<p class="font-bold">Email Notifications</p>
+<p class="text-xs text-on-surface-variant">Daily summary of API usage and errors</p>
+</div>
+</div>
+<input checked="" class="w-6 h-6 text-primary rounded border-outline-variant focus:ring-primary" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between p-md bg-surface-container-low rounded-lg">
+<div class="flex gap-md items-center">
+<span class="material-symbols-outlined text-primary">vibration</span>
+<div>
+<p class="font-bold">Push Notifications</p>
+<p class="text-xs text-on-surface-variant">Real-time critical uptime alerts</p>
+</div>
+</div>
+<input class="w-6 h-6 text-primary rounded border-outline-variant focus:ring-primary" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between p-md bg-surface-container-low rounded-lg">
+<div class="flex gap-md items-center">
+<span class="material-symbols-outlined text-primary">campaign</span>
+<div>
+<p class="font-bold">Product Updates</p>
+<p class="text-xs text-on-surface-variant">News about new features and releases</p>
+</div>
+</div>
+<input checked="" class="w-6 h-6 text-primary rounded border-outline-variant focus:ring-primary" type="checkbox"/>
+</div>
+</div>
+</section>
+<!-- Security Section -->
+<section class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm" id="security">
+<div class="mb-lg">
+<h2 class="font-headline-sm text-headline-sm mb-xs">Security</h2>
+<p class="text-on-surface-variant text-body-sm">Secure your account and API endpoints.</p>
+</div>
+<div class="space-y-lg max-w-xl">
+<div>
+<label class="block font-bold text-body-sm mb-sm text-on-surface">Change Password</label>
+<div class="space-y-md">
+<input class="w-full p-sm border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Current Password" type="password"/>
+<input class="w-full p-sm border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="New Password" type="password"/>
+<input class="w-full p-sm border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Confirm New Password" type="password"/>
+<button class="px-lg py-sm bg-primary text-white rounded-lg font-bold active:scale-95 transition-transform">Update Password</button>
+</div>
+</div>
+<div class="pt-lg border-t border-outline-variant/30 flex items-center justify-between">
+<div>
+<p class="font-bold">Two-Factor Authentication (2FA)</p>
+<p class="text-xs text-on-surface-variant">Add an extra layer of security using an authenticator app.</p>
+</div>
+<button class="px-md py-sm border border-primary text-primary rounded-lg font-bold hover:bg-primary-container/5 transition-colors">Enable 2FA</button>
+</div>
+</div>
+</section>
+<!-- API Preferences Section -->
+<section class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm" id="api-prefs">
+<div class="mb-lg">
+<h2 class="font-headline-sm text-headline-sm mb-xs">API Preferences</h2>
+<p class="text-on-surface-variant text-body-sm">Global defaults for your API requests.</p>
+</div>
+<div class="grid md:grid-cols-2 gap-lg">
+<div>
+<label class="block font-bold text-body-sm mb-sm text-on-surface">Default Timeout (ms)</label>
+<input class="font-code w-full p-sm border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary outline-none" type="number" value="30000"/>
+</div>
+<div>
+<label class="block font-bold text-body-sm mb-sm text-on-surface">Default Deployment Region</label>
+<select class="w-full p-sm border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary outline-none bg-white">
+<option>us-east-1 (N. Virginia)</option>
+<option>eu-west-1 (Ireland)</option>
+<option>ap-southeast-1 (Singapore)</option>
+<option>us-west-2 (Oregon)</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Danger Zone -->
+<section class="bg-error-container/10 border border-error/20 p-lg rounded-xl shadow-sm">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-error mb-xs">Danger Zone</h2>
+<p class="text-on-surface-variant text-body-sm">Permanently delete your account and all associated data.</p>
+</div>
+<button class="px-lg py-md border-2 border-error text-error font-bold rounded-lg hover:bg-error hover:text-white transition-all active:scale-95">Delete Account</button>
+</div>
+</section>
+</div>
+</div>
+</main>
+<script>
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                window.scrollTo({
+                    top: element.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+            
+            // Update active state in sidebar
+            document.querySelectorAll('.setting-tab').forEach(tab => {
+                tab.classList.remove('active-tab', 'text-primary');
+                tab.classList.add('text-on-surface-variant');
+                if (tab.innerText.toLowerCase().includes(id)) {
+                    tab.classList.add('active-tab', 'text-primary');
+                    tab.classList.remove('text-on-surface-variant');
+                }
+            });
+        }
+
+        // Intersection observer for scroll highlighting
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    document.querySelectorAll('.setting-tab').forEach(tab => {
+                        if (tab.innerText.toLowerCase().includes(id)) {
+                            tab.classList.add('active-tab', 'text-primary');
+                            tab.classList.remove('text-on-surface-variant');
+                        } else {
+                            tab.classList.remove('active-tab', 'text-primary');
+                            tab.classList.add('text-on-surface-variant');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('section[id]').forEach((section) => observer.observe(section));
+    </script>
+</body></html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>APIHub - The World's Largest API Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@450&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#eff4ff",
+                      "surface-container-highest": "#d3e4fe",
+                      "primary-fixed": "#e2dfff",
+                      "on-tertiary": "#ffffff",
+                      "outline": "#777587",
+                      "secondary-fixed": "#dae2fd",
+                      "outline-variant": "#c7c4d8",
+                      "on-primary-fixed": "#0f0069",
+                      "on-error-container": "#93000a",
+                      "on-background": "#0b1c30",
+                      "on-tertiary-container": "#67f4b7",
+                      "tertiary": "#005338",
+                      "on-surface-variant": "#464555",
+                      "surface-container-high": "#dce9ff",
+                      "inverse-primary": "#c3c0ff",
+                      "secondary": "#565e74",
+                      "tertiary-container": "#006e4b",
+                      "inverse-on-surface": "#eaf1ff",
+                      "surface-bright": "#f8f9ff",
+                      "on-secondary-fixed": "#131b2e",
+                      "surface-dim": "#cbdbf5",
+                      "on-secondary-container": "#5c647a",
+                      "surface-variant": "#d3e4fe",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "on-tertiary-fixed": "#002113",
+                      "primary-container": "#4f46e5",
+                      "surface": "#f8f9ff",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "on-surface": "#0b1c30",
+                      "on-primary-container": "#dad7ff",
+                      "surface-container": "#e5eeff",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "inverse-surface": "#213145",
+                      "surface-container-lowest": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "on-primary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "primary": "#3525cd",
+                      "surface-tint": "#4d44e3",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed-variant": "#005236",
+                      "tertiary-fixed": "#6ffbbe",
+                      "background": "#f8f9ff",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#4edea3",
+                      "secondary-container": "#dae2fd"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "sm": "8px",
+                      "container-max": "1280px",
+                      "lg": "24px",
+                      "xs": "4px",
+                      "2xl": "48px",
+                      "xl": "32px",
+                      "gutter": "24px",
+                      "md": "16px",
+                      "3xl": "64px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "headline-sm": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "code": [
+                              "Geist"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-sm": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "30px",
+                              {
+                                      "lineHeight": "36px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "code": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "450"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+          .glass-panel {
+              background: rgba(255, 255, 255, 0.7);
+              backdrop-filter: blur(12px);
+              -webkit-backdrop-filter: blur(12px);
+              border: 1px solid #E2E8F0;
+          }
+          .glass-nav {
+              background: rgba(248, 249, 255, 0.7);
+              backdrop-filter: blur(16px);
+              -webkit-backdrop-filter: blur(16px);
+          }
+      </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 border-b border-outline-variant/30 shadow-sm glass-nav transition-all duration-200 ease-in-out">
+<div class="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto">
+<!-- Brand -->
+<div class="flex items-center gap-lg">
+<a class="font-headline-sm text-headline-sm font-bold text-on-background flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">hub</span>
+                    APIHub
+                </a>
+<!-- Search (Web) -->
+<div class="hidden md:flex items-center bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-1.5 focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition-all w-64">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] mr-2">search</span>
+<input class="bg-transparent border-none outline-none text-body-sm font-body-sm w-full placeholder-on-surface-variant p-0 focus:ring-0" placeholder="Search APIs..." type="text"/>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-lg">
+<a class="font-body-md text-body-md text-primary font-semibold border-b-2 border-primary h-16 flex items-center px-2 hover:bg-surface-container-low/50 transition-colors" href="#">Explore</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary h-16 flex items-center px-2 hover:bg-surface-container-low/50 transition-colors" href="#">Pricing</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary h-16 flex items-center px-2 hover:bg-surface-container-low/50 transition-colors" href="#">Docs</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-md">
+<a class="hidden md:inline-flex font-body-sm text-body-sm font-semibold text-on-surface-variant hover:text-primary transition-colors" href="#">Log in</a>
+<a class="inline-flex items-center justify-center px-4 py-2 bg-primary-container text-on-primary rounded-lg font-body-sm text-body-sm font-semibold hover:bg-primary transition-colors shadow-sm" href="#">Sign up</a>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow pt-24 pb-3xl">
+<!-- Hero Section -->
+<section class="max-w-container-max mx-auto px-gutter py-3xl flex flex-col items-center text-center space-y-xl">
+<div class="space-y-md max-w-3xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-high rounded-full border border-outline-variant mb-4">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span class="font-label-caps text-label-caps text-on-secondary-container uppercase">Over 50,000 APIs Indexed</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-background">
+                    The World's Largest API Hub
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                    Discover, connect, and manage all your APIs from a single, unified platform. Built for modern developers who demand speed and reliability.
+                </p>
+</div>
+<!-- Global Search -->
+<div class="w-full max-w-4xl relative">
+<div class="glass-panel rounded-xl p-md flex flex-col md:flex-row gap-md shadow-sm">
+<div class="flex-1 flex items-center bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition-all">
+<span class="material-symbols-outlined text-primary text-[24px] mr-3">search</span>
+<input class="bg-transparent border-none outline-none text-body-lg font-body-lg w-full placeholder-on-surface-variant p-0 focus:ring-0" placeholder="Search for payments, AI, messaging..." type="text"/>
+</div>
+<div class="flex gap-md">
+<select class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 text-body-md font-body-md text-on-surface-variant focus:ring-2 focus:ring-primary outline-none hidden md:block">
+<option>All Categories</option>
+<option>Payment</option>
+<option>Artificial Intelligence</option>
+<option>Data</option>
+</select>
+<button class="px-6 py-3 bg-primary-container text-on-primary rounded-lg font-body-md text-body-md font-semibold hover:bg-primary transition-colors whitespace-nowrap shadow-sm w-full md:w-auto">
+                            Search Hub
+                        </button>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-md text-on-surface-variant font-body-sm text-body-sm pt-4">
+<span>Trending searches:</span>
+<a class="hover:text-primary transition-colors underline decoration-outline-variant hover:decoration-primary underline-offset-4" href="#">OpenAI</a>
+<a class="hover:text-primary transition-colors underline decoration-outline-variant hover:decoration-primary underline-offset-4" href="#">Stripe</a>
+<a class="hover:text-primary transition-colors underline decoration-outline-variant hover:decoration-primary underline-offset-4" href="#">Twilio</a>
+</div>
+</section>
+<!-- Featured APIs (Bento Grid) -->
+<section class="max-w-container-max mx-auto px-gutter py-2xl space-y-lg">
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-background">Featured APIs</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Top-tier endpoints trusted by millions.</p>
+</div>
+<a class="hidden md:flex items-center gap-1 font-body-md text-body-md font-semibold text-primary hover:text-primary-container transition-colors group" href="#">
+                    View all <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Card 1 -->
+<div class="glass-panel rounded-xl p-lg flex flex-col hover:shadow-md transition-shadow group relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-10 group-hover:bg-primary/10 transition-colors"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-tertiary-container/10 text-tertiary-container border border-tertiary-container/20 font-label-caps text-label-caps">99.9% UPTIME</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Stripe API</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex-grow">Complete toolkit for internet business. Process payments, manage subscriptions, and send payouts globally.</p>
+<div class="flex items-center justify-between border-t border-outline-variant/50 pt-4">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">star</span>
+<span class="font-body-sm text-body-sm font-semibold">4.9</span>
+</div>
+<button class="text-primary font-body-sm text-body-sm font-semibold hover:text-primary-container">View Docs</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-panel rounded-xl p-lg flex flex-col hover:shadow-md transition-shadow group relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-10 group-hover:bg-primary/10 transition-colors"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-tertiary-container/10 text-tertiary-container border border-tertiary-container/20 font-label-caps text-label-caps">TRENDING</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">OpenAI</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex-grow">Integrate advanced AI models for natural language processing, image generation, and complex reasoning tasks.</p>
+<div class="flex items-center justify-between border-t border-outline-variant/50 pt-4">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">star</span>
+<span class="font-body-sm text-body-sm font-semibold">4.8</span>
+</div>
+<button class="text-primary font-body-sm text-body-sm font-semibold hover:text-primary-container">View Docs</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="glass-panel rounded-xl p-lg flex flex-col hover:shadow-md transition-shadow group relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-10 group-hover:bg-primary/10 transition-colors"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">forum</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-2">Twilio</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex-grow">Customer engagement platform. Build SMS, Voice, and Video applications with robust global infrastructure.</p>
+<div class="flex items-center justify-between border-t border-outline-variant/50 pt-4">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">star</span>
+<span class="font-body-sm text-body-sm font-semibold">4.7</span>
+</div>
+<button class="text-primary font-body-sm text-body-sm font-semibold hover:text-primary-container">View Docs</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Categories & Stats -->
+<section class="bg-surface-container-low py-3xl border-y border-outline-variant/30 mt-2xl">
+<div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 lg:grid-cols-2 gap-2xl">
+<!-- Popular Categories -->
+<div class="space-y-lg">
+<h2 class="font-headline-md text-headline-md text-on-background">Popular Categories</h2>
+<div class="grid grid-cols-2 gap-md">
+<a class="glass-panel p-md rounded-xl flex items-center gap-md hover:border-primary hover:shadow-sm transition-all group" href="#">
+<div class="w-10 h-10 rounded-lg bg-surface-container border border-outline-variant flex items-center justify-center group-hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined text-primary">data_object</span>
+</div>
+<span class="font-body-md text-body-md font-semibold text-on-background">Data &amp; Storage</span>
+</a>
+<a class="glass-panel p-md rounded-xl flex items-center gap-md hover:border-primary hover:shadow-sm transition-all group" href="#">
+<div class="w-10 h-10 rounded-lg bg-surface-container border border-outline-variant flex items-center justify-center group-hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined text-primary">security</span>
+</div>
+<span class="font-body-md text-body-md font-semibold text-on-background">Security &amp; Auth</span>
+</a>
+<a class="glass-panel p-md rounded-xl flex items-center gap-md hover:border-primary hover:shadow-sm transition-all group" href="#">
+<div class="w-10 h-10 rounded-lg bg-surface-container border border-outline-variant flex items-center justify-center group-hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined text-primary">public</span>
+</div>
+<span class="font-body-md text-body-md font-semibold text-on-background">Mapping &amp; Location</span>
+</a>
+<a class="glass-panel p-md rounded-xl flex items-center gap-md hover:border-primary hover:shadow-sm transition-all group" href="#">
+<div class="w-10 h-10 rounded-lg bg-surface-container border border-outline-variant flex items-center justify-center group-hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined text-primary">cloud</span>
+</div>
+<span class="font-body-md text-body-md font-semibold text-on-background">Cloud Infrastructure</span>
+</a>
+</div>
+</div>
+<!-- Stats -->
+<div class="space-y-lg flex flex-col justify-center">
+<h2 class="font-headline-md text-headline-md text-on-background">By the Numbers</h2>
+<div class="grid grid-cols-2 gap-lg">
+<div class="border-l-2 border-primary pl-md">
+<div class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-background font-bold">50K+</div>
+<div class="font-body-md text-body-md text-on-surface-variant">APIs Indexed</div>
+</div>
+<div class="border-l-2 border-primary pl-md">
+<div class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-background font-bold">2M+</div>
+<div class="font-body-md text-body-md text-on-surface-variant">Active Developers</div>
+</div>
+<div class="border-l-2 border-primary pl-md">
+<div class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-background font-bold">10B+</div>
+<div class="font-body-md text-body-md text-on-surface-variant">Monthly Requests</div>
+</div>
+<div class="border-l-2 border-primary pl-md">
+<div class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-background font-bold">99.9%</div>
+<div class="font-body-md text-body-md text-on-surface-variant">Average Uptime</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="max-w-container-max mx-auto px-gutter py-3xl text-center">
+<div class="glass-panel rounded-xl p-3xl bg-gradient-to-br from-surface-container-lowest to-surface-container-low border border-outline-variant shadow-sm relative overflow-hidden">
+<!-- Decorative background blur -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-24 -left-24 w-64 h-64 bg-tertiary-container/10 rounded-full blur-3xl"></div>
+<div class="relative z-10 space-y-lg max-w-2xl mx-auto">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-background">Ready to accelerate your development?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Join millions of developers building the future with APIHub. No credit card required.</p>
+<div class="flex flex-col sm:flex-row justify-center gap-md pt-md">
+<button class="px-8 py-4 bg-primary-container text-on-primary rounded-lg font-body-lg text-body-lg font-semibold hover:bg-primary transition-colors shadow-sm">
+                            Start Building for Free
+                        </button>
+<button class="px-8 py-4 bg-surface-container-lowest text-on-background border border-outline-variant rounded-lg font-body-lg text-body-lg font-semibold hover:bg-surface-container-low transition-colors shadow-sm">
+                            Read the Docs
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest w-full py-3xl border-t border-outline-variant">
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-xl px-gutter max-w-container-max mx-auto">
+<!-- Brand Column -->
+<div class="col-span-2 lg:col-span-1 space-y-md">
+<div class="font-headline-sm text-headline-sm font-bold text-on-background flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">hub</span>
+                    APIHub
+                </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    The single source of truth for modern API discovery and management.
+                </p>
+<div class="font-body-sm text-body-sm text-on-surface-variant opacity-80 pt-lg">
+                    © 2024 APIHub Inc. All rights reserved.
+                </div>
+</div>
+<!-- Links Columns -->
+<div class="space-y-md">
+<h4 class="font-body-md text-body-md font-semibold text-on-background">Product</h4>
+<ul class="space-y-sm">
+<li><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Explore</a></li>
+<li><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Pricing</a></li>
+<li><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Changelog</a></li>
+</ul>
+</div>
+<div class="space-y-md">
+<h4 class="font-body-md text-body-md font-semibold text-on-background">Resources</h4>
+<ul class="space-y-sm">
+<li><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Documentation</a></li>
+<li><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">API Reference</a></li>
+<li><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Community</a></li>
+</ul>
+</div>
+<div class="space-y-md">
+<h4 class="font-body-md text-body-md font-semibold text-on-background">Company</h4>
+<ul class="space-y-sm">
+<li><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">About Us</a></li>
+<li><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Careers</a></li>
+<li><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Blog</a></li>
+</ul>
+</div>
+<div class="space-y-md">
+<h4 class="font-body-md text-body-md font-semibold text-on-background">Legal</h4>
+<ul class="space-y-sm">
+<li><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Privacy Policy</a></li>
+<li><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a></li>
+<li><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Security</a></li>
+</ul>
+</div>
+</div>
+</footer>
+</body></html>

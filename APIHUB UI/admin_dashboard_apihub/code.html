@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>APIHub | Admin Dashboard</title>
+<!-- Google Fonts: Inter & Geist Mono -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=Geist+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .chart-gradient {
+            background: linear-gradient(180deg, rgba(79, 70, 229, 0.1) 0%, rgba(79, 70, 229, 0) 100%);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#d3e4fe",
+                    "outline-variant": "#c7c4d8",
+                    "on-primary-container": "#dad7ff",
+                    "tertiary-container": "#006e4b",
+                    "on-secondary-container": "#5c647a",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "surface-container-high": "#dce9ff",
+                    "secondary-fixed": "#dae2fd",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed": "#131b2e",
+                    "inverse-surface": "#213145",
+                    "surface-tint": "#4d44e3",
+                    "outline": "#777587",
+                    "on-tertiary-fixed": "#002113",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#eff4ff",
+                    "secondary": "#565e74",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "on-background": "#0b1c30",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#464555",
+                    "tertiary-fixed": "#6ffbbe",
+                    "surface-container": "#e5eeff",
+                    "secondary-container": "#dae2fd",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "primary-fixed": "#e2dfff",
+                    "on-tertiary-container": "#67f4b7",
+                    "on-primary-fixed": "#0f0069",
+                    "inverse-on-surface": "#eaf1ff",
+                    "error": "#ba1a1a",
+                    "inverse-primary": "#c3c0ff",
+                    "surface-bright": "#f8f9ff",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#005338",
+                    "background": "#f8f9ff",
+                    "on-surface": "#0b1c30",
+                    "surface": "#f8f9ff",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "surface-container-highest": "#d3e4fe",
+                    "surface-dim": "#cbdbf5",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#3525cd",
+                    "on-primary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#4f46e5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "gutter": "24px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "base": "4px",
+                    "3xl": "64px",
+                    "xs": "4px",
+                    "2xl": "48px",
+                    "container-max": "1280px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "code": ["Geist Mono"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "code": ["14px", {"lineHeight": "20px", "fontWeight": "450"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+<!-- TopNavBar (Fixed) -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 dark:bg-inverse-surface/70 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm">
+<div class="flex justify-between items-center px-lg h-16 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-xl">
+<span class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">APIHub</span>
+<nav class="hidden md:flex gap-md">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Solutions</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Docs</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm">
+<button class="p-base text-on-surface-variant hover:text-primary transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-base text-on-surface-variant hover:text-primary transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+<button class="bg-primary-container text-on-primary-container px-md py-sm rounded-lg font-bold transition-transform active:scale-95">
+                    Create API
+                </button>
+<img class="w-8 h-8 rounded-full border border-outline-variant/30" data-alt="A professional user avatar for a senior software engineer, styled with soft studio lighting and a clean, minimalist background. The aesthetic is modern corporate, featuring deep indigo and neutral tones consistent with high-end developer platforms. The person is smiling confidently, appearing approachable yet authoritative." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClQThm8ZFZDTvpU5DsnENYe3K8z_2Dch-oRlcGRw2Xujzr7gx2edq40CG_FbPTYb-MWxCZK2hzBaVixIQXkOn1cHyIbcCazYiswftOD8fAc74ENjEHy8q1s_rVxjbyHvslTAJbgTkEgZ94MUa-Rzajzcm1iXmk44vZAtOLN3S-5xAN3mc-7oq3DLRkDrwlRuS5ffnrUDYRfG39k69lPbMoT3mQtbFoYczBnnWV3ESYcAmd4X_2Mywl2UhSGnLm-GO-IorWiGOOi39U"/>
+</div>
+</div>
+</header>
+<!-- Sidebar & Main Content Wrapper -->
+<div class="flex pt-16">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-surface-container-low/80 dark:bg-surface-container-highest/10 backdrop-blur-lg border-r border-outline-variant/20 flex flex-col py-md gap-xs hidden md:flex">
+<div class="px-md mb-md">
+<div class="flex items-center gap-sm mb-base">
+<span class="material-symbols-outlined text-primary" data-icon="api">api</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">Project Workspace</span>
+</div>
+<p class="text-on-surface-variant text-body-sm font-body-sm">Production Environment</p>
+</div>
+<nav class="flex-1 px-sm space-y-1">
+<a class="bg-primary-container/10 text-primary border-l-4 border-primary rounded-r-lg flex items-center gap-sm px-md py-sm hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-sm text-body-sm">Dashboard</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant/50 flex items-center gap-sm px-md py-sm transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-body-sm text-body-sm">Explorer</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant/50 flex items-center gap-sm px-md py-sm transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="api">api</span>
+<span class="font-body-sm text-body-sm">My APIs</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-variant/50 flex items-center gap-sm px-md py-sm transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-sm text-body-sm">Settings</span>
+</a>
+</nav>
+<div class="px-md py-md mt-auto border-t border-outline-variant/10">
+<button class="w-full py-sm px-md bg-secondary-container text-on-secondary-container rounded-lg font-bold text-body-sm hover:brightness-95 transition-all mb-md">
+                    Upgrade Plan
+                </button>
+<div class="space-y-1">
+<a class="text-on-surface-variant flex items-center gap-sm px-md py-xs text-body-sm hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="description">description</span>
+                        Documentation
+                    </a>
+<a class="text-on-surface-variant flex items-center gap-sm px-md py-xs text-body-sm hover:text-error transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+                        Log out
+                    </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 p-lg bg-surface-bright">
+<div class="max-w-container-max mx-auto space-y-xl">
+<!-- Page Title -->
+<div class="flex justify-between items-end">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface">Platform Overview</h1>
+<p class="text-on-surface-variant font-body-md">System health and usage metrics for the last 24 hours.</p>
+</div>
+<div class="flex gap-sm">
+<button class="px-md py-sm bg-surface-container-high rounded-lg text-on-surface-variant font-body-sm flex items-center gap-xs hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="calendar_today">calendar_today</span>
+                            Past 7 Days
+                        </button>
+<button class="px-md py-sm bg-primary text-on-primary rounded-lg font-body-sm font-bold flex items-center gap-xs hover:brightness-110 transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="download">download</span>
+                            Export Report
+                        </button>
+</div>
+</div>
+<!-- Stats Bento Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
+<!-- Card: Total Users -->
+<div class="glass-card p-lg rounded-xl shadow-sm hover:shadow-md transition-shadow group">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-primary-container/10 rounded-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="group">group</span>
+</div>
+<span class="text-tertiary font-bold text-body-sm flex items-center gap-xs bg-tertiary-container/10 px-sm py-xs rounded-full">
+<span class="material-symbols-outlined text-[16px]" data-icon="trending_up">trending_up</span>
+                                12%
+                            </span>
+</div>
+<p class="text-on-surface-variant text-label-caps font-label-caps uppercase tracking-wider mb-xs">Total Users</p>
+<h3 class="text-headline-sm font-headline-sm font-bold">14,282</h3>
+</div>
+<!-- Card: Total APIs -->
+<div class="glass-card p-lg rounded-xl shadow-sm hover:shadow-md transition-shadow group">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-primary-container/10 rounded-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="api">api</span>
+</div>
+<span class="text-tertiary font-bold text-body-sm flex items-center gap-xs bg-tertiary-container/10 px-sm py-xs rounded-full">
+<span class="material-symbols-outlined text-[16px]" data-icon="trending_up">trending_up</span>
+                                8.4%
+                            </span>
+</div>
+<p class="text-on-surface-variant text-label-caps font-label-caps uppercase tracking-wider mb-xs">Total APIs</p>
+<h3 class="text-headline-sm font-headline-sm font-bold">842</h3>
+</div>
+<!-- Card: Active Users -->
+<div class="glass-card p-lg rounded-xl shadow-sm hover:shadow-md transition-shadow group">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-primary-container/10 rounded-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="bolt">bolt</span>
+</div>
+<span class="text-error font-bold text-body-sm flex items-center gap-xs bg-error-container/10 px-sm py-xs rounded-full">
+<span class="material-symbols-outlined text-[16px]" data-icon="trending_down">trending_down</span>
+                                2.1%
+                            </span>
+</div>
+<p class="text-on-surface-variant text-label-caps font-label-caps uppercase tracking-wider mb-xs">Active Users (24h)</p>
+<h3 class="text-headline-sm font-headline-sm font-bold">3,120</h3>
+</div>
+<!-- Card: API Health -->
+<div class="glass-card p-lg rounded-xl shadow-sm hover:shadow-md transition-shadow group">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-primary-container/10 rounded-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="health_and_safety">health_and_safety</span>
+</div>
+<span class="text-tertiary font-bold text-body-sm flex items-center gap-xs bg-tertiary-container/10 px-sm py-xs rounded-full">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle">check_circle</span>
+                                Stable
+                            </span>
+</div>
+<p class="text-on-surface-variant text-label-caps font-label-caps uppercase tracking-wider mb-xs">System Uptime</p>
+<h3 class="text-headline-sm font-headline-sm font-bold">99.98%</h3>
+</div>
+</div>
+<!-- Usage Visualization Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Main Traffic Chart -->
+<div class="lg:col-span-2 glass-card p-lg rounded-xl shadow-sm">
+<div class="flex justify-between items-center mb-xl">
+<div>
+<h4 class="font-headline-sm text-headline-sm font-bold">System Traffic</h4>
+<p class="text-on-surface-variant text-body-sm">Global API request volume per hour</p>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="text-body-sm text-on-surface-variant">Production</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 rounded-full bg-outline-variant"></span>
+<span class="text-body-sm text-on-surface-variant">Staging</span>
+</div>
+</div>
+</div>
+<div class="h-64 relative w-full">
+<!-- Abstract Line Chart Visualization -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 800 200">
+<defs>
+<lineargradient id="chart-fill" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#4f46e5" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#4f46e5" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,150 Q100,50 200,120 T400,60 T600,100 T800,40 V200 H0 Z" fill="url(#chart-fill)"></path>
+<path d="M0,150 Q100,50 200,120 T400,60 T600,100 T800,40" fill="none" stroke="#3525cd" stroke-width="3"></path>
+<circle cx="400" cy="60" fill="#3525cd" r="4"></circle>
+<circle cx="400" cy="60" fill="#3525cd" fill-opacity="0.1" r="10"></circle>
+</svg>
+<div class="absolute bottom-0 w-full flex justify-between px-xs pt-md border-t border-outline-variant/10 text-label-caps text-on-surface-variant">
+<span>00:00</span>
+<span>04:00</span>
+<span>08:00</span>
+<span>12:00</span>
+<span>16:00</span>
+<span>20:00</span>
+<span>23:59</span>
+</div>
+</div>
+</div>
+<!-- User Growth Bar Chart -->
+<div class="glass-card p-lg rounded-xl shadow-sm flex flex-col">
+<h4 class="font-headline-sm text-headline-sm font-bold mb-xs">User Growth</h4>
+<p class="text-on-surface-variant text-body-sm mb-xl">New registrations by region</p>
+<div class="flex-1 flex items-end gap-sm px-md pb-md">
+<div class="flex-1 bg-primary-container/20 rounded-t-lg h-[60%] hover:bg-primary-container/40 transition-colors relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-xs px-xs py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">1.2k</div>
+</div>
+<div class="flex-1 bg-primary-container/40 rounded-t-lg h-[85%] hover:bg-primary-container transition-colors relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-xs px-xs py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">2.8k</div>
+</div>
+<div class="flex-1 bg-primary-container/20 rounded-t-lg h-[45%] hover:bg-primary-container/40 transition-colors relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-xs px-xs py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">0.9k</div>
+</div>
+<div class="flex-1 bg-primary-container/30 rounded-t-lg h-[70%] hover:bg-primary-container/50 transition-colors relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-xs px-xs py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">1.9k</div>
+</div>
+<div class="flex-1 bg-primary h-[95%] rounded-t-lg relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-xs px-xs py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">3.4k</div>
+</div>
+</div>
+<div class="flex justify-between text-label-caps text-on-surface-variant pt-sm">
+<span>NA</span>
+<span>EU</span>
+<span>AS</span>
+<span>SA</span>
+<span>AF</span>
+</div>
+</div>
+</div>
+<!-- Real-time Activity & Terminal Section -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-lg">
+<!-- Real-time Activity Feed -->
+<div class="glass-card rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="px-lg py-md border-b border-outline-variant/30 flex justify-between items-center bg-surface-container-low/50">
+<h4 class="font-headline-sm text-headline-sm font-bold">System Events</h4>
+<span class="flex items-center gap-sm text-body-sm text-tertiary">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary-fixed-dim opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-tertiary"></span>
+</span>
+                                Live Updates
+                            </span>
+</div>
+<div class="flex-1 divide-y divide-outline-variant/10 overflow-y-auto max-h-[400px] scrollbar-hide">
+<!-- Event 1 -->
+<div class="p-md flex items-start gap-md hover:bg-surface-variant/20 transition-colors">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary" data-icon="check_circle">check_circle</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-base">
+<p class="font-bold text-body-sm">API Deployment Successful</p>
+<span class="text-label-caps text-on-surface-variant">2m ago</span>
+</div>
+<p class="text-on-surface-variant text-body-sm">Payments Gateway v2.4.0 is now live in production region US-EAST-1.</p>
+</div>
+</div>
+<!-- Event 2 -->
+<div class="p-md flex items-start gap-md hover:bg-surface-variant/20 transition-colors">
+<div class="w-10 h-10 rounded-full bg-error-container/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-error" data-icon="warning">warning</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-base">
+<p class="font-bold text-body-sm">Rate Limit Triggered</p>
+<span class="text-label-caps text-on-surface-variant">15m ago</span>
+</div>
+<p class="text-on-surface-variant text-body-sm">Suspicious activity detected from IP 192.168.1.1. Temporary block applied.</p>
+</div>
+</div>
+<!-- Event 3 -->
+<div class="p-md flex items-start gap-md hover:bg-surface-variant/20 transition-colors">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="person_add">person_add</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-base">
+<p class="font-bold text-body-sm">New Enterprise Signup</p>
+<span class="text-label-caps text-on-surface-variant">42m ago</span>
+</div>
+<p class="text-on-surface-variant text-body-sm">GlobalTech Corp has subscribed to the Platinum Enterprise Plan.</p>
+</div>
+</div>
+<!-- Event 4 -->
+<div class="p-md flex items-start gap-md hover:bg-surface-variant/20 transition-colors">
+<div class="w-10 h-10 rounded-full bg-outline-variant/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-outline" data-icon="sync">sync</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-base">
+<p class="font-bold text-body-sm">Database Sync</p>
+<span class="text-label-caps text-on-surface-variant">1h ago</span>
+</div>
+<p class="text-on-surface-variant text-body-sm">Weekly backup and index optimization completed successfully.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Specialized Component: API Terminal -->
+<div class="bg-[#0F172A] rounded-xl shadow-xl overflow-hidden flex flex-col font-code">
+<div class="px-md py-sm bg-[#1E293B] flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="flex gap-1.5">
+<div class="w-3 h-3 rounded-full bg-error"></div>
+<div class="w-3 h-3 rounded-full bg-tertiary-fixed-dim"></div>
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+</div>
+<span class="text-on-secondary-container text-xs ml-md">System Logs / Main</span>
+</div>
+<span class="material-symbols-outlined text-on-secondary-container text-[18px]" data-icon="terminal">terminal</span>
+</div>
+<div class="p-lg space-y-sm text-code text-[#CBD5E1] h-[350px] overflow-y-auto scrollbar-hide" id="terminal-feed">
+<p class="text-[#64748B]">// Initializing APIHub Core v4.12.0</p>
+<p class="text-tertiary-fixed-dim">[OK] Authentication service cluster connected.</p>
+<p class="text-tertiary-fixed-dim">[OK] Redis cache layer warmed (4.2GB indexed).</p>
+<p class="text-primary-fixed-dim">[INFO] Fetching metrics for 'Auth-Gateway-Primary'...</p>
+<div class="pl-md py-xs border-l-2 border-[#334155]">
+<p><span class="text-primary-fixed-dim">CPU:</span> 12.4%</p>
+<p><span class="text-primary-fixed-dim">MEM:</span> 1.2GB / 4.0GB</p>
+<p><span class="text-primary-fixed-dim">REQ/s:</span> 4.5k</p>
+</div>
+<p class="text-error">[ERR] Endpoint '/v1/legacy/sync' returned 502 (Bad Gateway)</p>
+<p class="text-[#64748B]">// Retrying connection to upstream legacy-service...</p>
+<p class="text-tertiary-fixed-dim">[OK] Connection re-established.</p>
+<p class="animate-pulse">_</p>
+</div>
+</div>
+</div>
+<!-- Footer Context -->
+<footer class="pt-2xl pb-lg flex flex-col md:flex-row justify-between items-center gap-md border-t border-outline-variant/10 text-on-surface-variant">
+<div class="flex items-center gap-sm">
+<span class="font-bold text-primary">APIHub</span>
+<span class="text-body-sm">© 2024 Admin Control Center</span>
+</div>
+<div class="flex gap-xl text-body-sm">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Security Audit</a>
+</div>
+</footer>
+</div>
+</main>
+</div>
+<!-- Mobile Navigation (BottomNavBar fallback for responsive) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-xl border-t border-outline-variant/30 flex justify-around py-sm z-50">
+<button class="flex flex-col items-center gap-xs text-primary">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-bold">Dashboard</span>
+</button>
+<button class="flex flex-col items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="text-[10px]">Explorer</span>
+</button>
+<button class="flex flex-col items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="api">api</span>
+<span class="text-[10px]">My APIs</span>
+</button>
+<button class="flex flex-col items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[10px]">Settings</span>
+</button>
+</nav>
+<script>
+        // Simple Terminal interaction effect
+        const terminal = document.getElementById('terminal-feed');
+        const messages = [
+            { type: 'info', text: '[INFO] Processing batch request #9921...' },
+            { type: 'success', text: '[OK] Token validation cluster balanced.' },
+            { type: 'warning', text: '[WARN] High latency detected on EU-WEST-2 node.' },
+            { type: 'info', text: '[INFO] Auto-scaling event: Adding 2 new instances to Gateway group.' }
+        ];
+
+        function addTerminalMessage() {
+            const msg = messages[Math.floor(Math.random() * messages.length)];
+            const p = document.createElement('p');
+            
+            if (msg.type === 'success') p.className = 'text-tertiary-fixed-dim';
+            else if (msg.type === 'info') p.className = 'text-primary-fixed-dim';
+            else if (msg.type === 'warning') p.className = 'text-error-container';
+            else p.className = 'text-[#CBD5E1]';
+            
+            p.innerText = msg.text;
+            
+            // Insert before the cursor
+            const cursor = terminal.querySelector('.animate-pulse');
+            terminal.insertBefore(p, cursor);
+            
+            // Auto-scroll
+            terminal.scrollTop = terminal.scrollHeight;
+
+            // Remove old messages if too many
+            if (terminal.children.length > 25) {
+                terminal.removeChild(terminal.children[1]); // Keep title
+            }
+        }
+
+        setInterval(addTerminalMessage, 4000);
+    </script>
+</body></html>

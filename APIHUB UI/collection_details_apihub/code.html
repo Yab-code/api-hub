@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Collection Details - APIHub</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=Geist+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#c7c4d8",
+                    "on-primary-fixed": "#0f0069",
+                    "surface-container-low": "#eff4ff",
+                    "background": "#f8f9ff",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-secondary-container": "#5c647a",
+                    "inverse-surface": "#213145",
+                    "primary-fixed": "#e2dfff",
+                    "outline": "#777587",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-surface-variant": "#464555",
+                    "tertiary-container": "#006e4b",
+                    "surface-container": "#e5eeff",
+                    "on-secondary-fixed": "#131b2e",
+                    "on-background": "#0b1c30",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-tertiary-fixed": "#002113",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "surface-tint": "#4d44e3",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "on-primary-container": "#dad7ff",
+                    "surface-bright": "#f8f9ff",
+                    "secondary": "#565e74",
+                    "surface": "#f8f9ff",
+                    "surface-dim": "#cbdbf5",
+                    "on-tertiary-container": "#67f4b7",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#005338",
+                    "inverse-primary": "#c3c0ff",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "on-surface": "#0b1c30",
+                    "surface-container-high": "#dce9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#dae2fd",
+                    "secondary-container": "#dae2fd",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "primary-container": "#4f46e5",
+                    "surface-variant": "#d3e4fe",
+                    "primary": "#3525cd",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "on-primary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "base": "4px",
+                    "container-max": "1280px",
+                    "3xl": "64px",
+                    "gutter": "24px",
+                    "2xl": "48px",
+                    "xl": "32px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "code": ["Geist Mono"],
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "code": ["14px", {"lineHeight": "20px", "fontWeight": "450"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-md": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .drag-handle:hover {
+            cursor: grab;
+        }
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 dark:bg-inverse-surface/70 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm h-16">
+<div class="flex justify-between items-center px-lg h-16 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-xl">
+<span class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">APIHub</span>
+<div class="hidden md:flex items-center gap-md">
+<nav class="flex gap-md">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Solutions</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Docs</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+</nav>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden lg:flex items-center bg-surface-container rounded-full px-md py-xs border border-outline-variant/20">
+<span class="material-symbols-outlined text-on-surface-variant scale-90 mr-xs">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm w-48" placeholder="Search APIs..." type="text"/>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-xs hover:bg-surface-container rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<button class="p-xs hover:bg-surface-container rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">help_outline</span>
+</button>
+</div>
+<button class="bg-primary-container text-white px-md py-sm rounded-lg font-body-sm hover:opacity-90 active:scale-95 transition-all">
+                    Create API
+                </button>
+<div class="w-8 h-8 rounded-full bg-primary-fixed overflow-hidden border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="A professional high-resolution headshot of a software engineer with a modern aesthetic, soft rim lighting, set against a neutral grey studio background. The style is clean, corporate, and minimalist, using a subtle blue and white color palette to match the high-performance SaaS platform branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBadOLGTOazoe58mbs0UV3AQw6dbIdGHllP0PRCiNBepzhVJ8RSFBLBt2bIgHNODTkDefFYfKr5JaqQtvsqGnGLWLfENFdE1_Jfl9_ZlDk21bhmcUEgMyiHa1yVoqexXdXHv2bCfVmMP6MkfybmvxCnr1G8kggCqiFVXYuWtExLu0Z4-dFffQQg6Uq232dPP8aT1D8BoCvg-RVLQWrm4cp-6UNRKiEdakNM_As161rI78aNWGlbb6zArjP6w1W2XYBkboeGQclPZlqa"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Sidebar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-surface-container-low/80 dark:bg-surface-container-highest/10 backdrop-blur-lg border-r border-outline-variant/20 flex flex-col py-md gap-xs hidden md:flex">
+<div class="px-md mb-md">
+<div class="flex items-center gap-sm p-sm rounded-xl bg-surface-container-high/50">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-md">grid_view</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-bold text-primary">Project Workspace</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wider">Production Environment</span>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-sm space-y-1">
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-primary-container/5 transition-all hover:translate-x-1 font-body-sm text-body-sm rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-primary-container/5 transition-all hover:translate-x-1 font-body-sm text-body-sm rounded-lg" href="#">
+<span class="material-symbols-outlined">explore</span>
+                Explorer
+            </a>
+<a class="flex items-center gap-sm px-md py-sm bg-primary-container/10 text-primary dark:text-primary-fixed-dim border-l-4 border-primary rounded-r-lg font-body-sm text-body-sm" href="#">
+<span class="material-symbols-outlined">api</span>
+                My APIs
+            </a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-primary-container/5 transition-all hover:translate-x-1 font-body-sm text-body-sm rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="px-md mt-auto space-y-4">
+<button class="w-full bg-secondary-container text-on-secondary-fixed-variant py-sm px-md rounded-xl font-body-sm font-bold hover:bg-secondary-container/80 transition-colors flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-sm">upgrade</span>
+                Upgrade Plan
+            </button>
+<div class="pt-md border-t border-outline-variant/20 space-y-1">
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-primary-container/5 transition-all font-body-sm text-body-sm rounded-lg" href="#">
+<span class="material-symbols-outlined">description</span>
+                    Documentation
+                </a>
+<a class="flex items-center gap-sm px-md py-sm text-error hover:bg-error/5 transition-all font-body-sm text-body-sm rounded-lg" href="#">
+<span class="material-symbols-outlined">logout</span>
+                    Log out
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="md:ml-64 pt-16 min-h-screen">
+<div class="max-w-container-max mx-auto px-lg py-xl">
+<!-- Collection Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-3xl">
+<div class="flex-1">
+<nav class="flex items-center gap-xs text-on-surface-variant font-body-sm mb-sm">
+<a class="hover:text-primary" href="#">Collections</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-on-surface font-bold">Payments Gateway</span>
+</nav>
+<h1 class="font-headline-md text-headline-md text-on-surface mb-xs">Payments Gateway APIs</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                        A curated collection of highly secure payment processing and financial reconciliation endpoints for enterprise fintech applications.
+                    </p>
+</div>
+<div class="flex items-center gap-sm shrink-0">
+<button class="flex items-center gap-xs px-md py-sm bg-surface border border-outline-variant rounded-lg font-body-sm text-on-surface hover:bg-surface-container transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm">share</span>
+                        Share
+                    </button>
+<button class="flex items-center gap-xs px-md py-sm bg-surface border border-outline-variant rounded-lg font-body-sm text-on-surface hover:bg-surface-container transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm">edit</span>
+                        Edit
+                    </button>
+</div>
+</div>
+<!-- Bento Grid List View Area -->
+<div class="grid grid-cols-1 gap-lg">
+<!-- Quick Add Section -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-md flex flex-col md:flex-row items-center gap-md shadow-sm">
+<div class="flex-1 w-full relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">add_link</span>
+<input class="w-full bg-background border border-outline-variant rounded-lg py-sm pl-11 pr-md font-body-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="Paste API ID or URL to quick add..." type="text"/>
+</div>
+<button class="shrink-0 w-full md:w-auto bg-primary text-white px-xl py-sm rounded-lg font-bold font-body-sm hover:bg-primary-container transition-all flex items-center justify-center gap-sm active:scale-95 shadow-md">
+<span class="material-symbols-outlined">add</span>
+                        Add API
+                    </button>
+</div>
+<!-- API List -->
+<div class="space-y-md">
+<div class="flex items-center justify-between px-md py-sm">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase">7 APIs in this collection</h2>
+<div class="flex items-center gap-md text-on-surface-variant">
+<button class="flex items-center gap-xs font-body-sm hover:text-primary"><span class="material-symbols-outlined text-md">sort</span> Sort</button>
+<button class="flex items-center gap-xs font-body-sm hover:text-primary"><span class="material-symbols-outlined text-md">filter_list</span> Filter</button>
+</div>
+</div>
+<!-- API Item 1 -->
+<div class="group bg-surface-container-lowest border border-outline-variant/20 rounded-xl p-md hover:border-primary/50 hover:shadow-lg transition-all duration-300 flex items-center gap-md relative">
+<div class="drag-handle p-xs hover:bg-surface-container rounded-lg transition-colors text-outline">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+<div class="w-12 h-12 rounded-lg bg-surface flex items-center justify-center border border-outline-variant/30 overflow-hidden">
+<img class="w-8 h-8 object-contain" data-alt="A minimalist tech logo for a financial service, featuring abstract geometric interlocking lines in vibrant indigo and teal. The aesthetic is modern corporate, clean, and professional, rendered on a pure white background with a sharp digital vector finish to match a high-end developer dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCJNpw8ZbRjOX59RjwFiYMK6s4EU_CTVcxFHh8c6uccdH_JMBJuXlrPqS-ZiBsL9Rx9t1iW3MQGaLt9OMKq2YjtU3pc5MX1EsPAswyr-f45YTK7QSi_ZcKJqEizcC-GV143rBbXuviaYzj8XahdleVKDUPyWT5mZcwTLgcNdyfSJ2gFm-VJ2u_jjamRoB0VgVUX-8wQzgdjpq5z1hbIYcwhzqA9MBAlgtBC2Y6zpzcQyutSySNBD3PTXCGCCwU5lSWYHCnhO5RzjNl"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-sm">
+<h3 class="font-body-md text-body-md font-bold text-on-surface truncate">Stripe Connect Engine</h3>
+<span class="bg-tertiary/10 text-tertiary-fixed-variant px-xs py-0.5 rounded text-[10px] font-bold uppercase border border-tertiary/20">Production</span>
+</div>
+<p class="text-body-sm text-on-surface-variant truncate">v2.4.0 • Enterprise payment orchestration layer</p>
+</div>
+<div class="hidden lg:flex flex-col items-end gap-xs mr-xl">
+<div class="flex items-center gap-sm text-[12px] font-mono text-on-surface-variant bg-surface px-sm py-0.5 rounded border border-outline-variant/30">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                                99.98% Uptime
+                            </div>
+<span class="text-[10px] text-on-surface-variant/60">Last sync: 2 mins ago</span>
+</div>
+<button class="p-sm text-on-surface-variant hover:text-error hover:bg-error/5 rounded-lg transition-all group-hover:opacity-100" title="Remove from Collection">
+<span class="material-symbols-outlined">delete_outline</span>
+</button>
+</div>
+<!-- API Item 2 -->
+<div class="group bg-surface-container-lowest border border-outline-variant/20 rounded-xl p-md hover:border-primary/50 hover:shadow-lg transition-all duration-300 flex items-center gap-md relative">
+<div class="drag-handle p-xs hover:bg-surface-container rounded-lg transition-colors text-outline">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+<div class="w-12 h-12 rounded-lg bg-surface flex items-center justify-center border border-outline-variant/30 overflow-hidden">
+<img class="w-8 h-8 object-contain" data-alt="A tech-oriented icon for a crypto-currency gateway, using a sleek hexagonal shape with a neon green circuit pattern. The design is minimalist and technical, reflecting a cutting-edge API platform. The color scheme is predominantly dark blue with sharp green accents, mirroring a high-performance developer tool aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_r3nthmIyNUyRwc7b_nJrWZf7Bm5k9aLYIhYjPWpLbqeb_RWphplD6Nhyjxr8sItXSnUEzqnVNog1mQTzKaWPfl5Td2K-R5OvwDtFMStCE30JkP1UHd8Frw_7U1d38Wps6rP9sz_jZArD00jwY9G5J4O815ew-oH7DQV1YOgCed1bKfkEcRJwuKwBkThi3k9KEzwaeYCqpieC0NP9XXPxmUKzGW3Mc2eE6q8u5gyhh2igcdpLIc4TDjPVKi0DG7xkP4VO07sxgE3X"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-sm">
+<h3 class="font-body-md text-body-md font-bold text-on-surface truncate">CryptoFlow Gateway</h3>
+<span class="bg-primary/10 text-primary-fixed-variant px-xs py-0.5 rounded text-[10px] font-bold uppercase border border-primary/20">Beta</span>
+</div>
+<p class="text-body-sm text-on-surface-variant truncate">v1.1.2-rc • Real-time blockchain settlement nodes</p>
+</div>
+<div class="hidden lg:flex flex-col items-end gap-xs mr-xl">
+<div class="flex items-center gap-sm text-[12px] font-mono text-on-surface-variant bg-surface px-sm py-0.5 rounded border border-outline-variant/30">
+<span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+                                98.40% Uptime
+                            </div>
+<span class="text-[10px] text-on-surface-variant/60">Last sync: 12 mins ago</span>
+</div>
+<button class="p-sm text-on-surface-variant hover:text-error hover:bg-error/5 rounded-lg transition-all group-hover:opacity-100" title="Remove from Collection">
+<span class="material-symbols-outlined">delete_outline</span>
+</button>
+</div>
+<!-- API Item 3 -->
+<div class="group bg-surface-container-lowest border border-outline-variant/20 rounded-xl p-md hover:border-primary/50 hover:shadow-lg transition-all duration-300 flex items-center gap-md relative">
+<div class="drag-handle p-xs hover:bg-surface-container rounded-lg transition-colors text-outline">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+<div class="w-12 h-12 rounded-lg bg-surface flex items-center justify-center border border-outline-variant/30 overflow-hidden">
+<img class="w-8 h-8 object-contain" data-alt="A modern minimalist logo for a global tax compliance API, featuring a globe icon constructed from clean, geometric segments in shades of slate and gold. The style is professional, authoritative, and clean, perfectly fitting a premium developer dashboard with high white-space usage and high-contrast typography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwDEP6Stcjx9cMciFpybX42-5_48g9_VD7JfvcE9ypN8W5ujvcKH582bPlrlvi7KNv4JaxZvbwTKgkENCd3_GMyCaTUE1cVYYUaDBeg6pPqmTT_P16qW1_4mpwhKBiTSwua9vvbIrbqYNj1h9lWd2fjaEbb5V3HsSO0BXZdIblCfFPABOupuZN6kJG6C1AxV6OeJHAIvQm8vpoRH81R0TgT4VuyrVkSTo28s_pS3jiR3oMtx8QMmfVTNTwIXY0ZgIuvHp7asREQhG8"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-sm">
+<h3 class="font-body-md text-body-md font-bold text-on-surface truncate">Avalara Global Tax</h3>
+<span class="bg-on-surface-variant/10 text-on-surface-variant px-xs py-0.5 rounded text-[10px] font-bold uppercase border border-on-surface-variant/20">Third-Party</span>
+</div>
+<p class="text-body-sm text-on-surface-variant truncate">v3.0 • International VAT and Sales Tax automation</p>
+</div>
+<div class="hidden lg:flex flex-col items-end gap-xs mr-xl">
+<div class="flex items-center gap-sm text-[12px] font-mono text-on-surface-variant bg-surface px-sm py-0.5 rounded border border-outline-variant/30">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                99.99% Uptime
+                            </div>
+<span class="text-[10px] text-on-surface-variant/60">Last sync: 1 hour ago</span>
+</div>
+<button class="p-sm text-on-surface-variant hover:text-error hover:bg-error/5 rounded-lg transition-all group-hover:opacity-100" title="Remove from Collection">
+<span class="material-symbols-outlined">delete_outline</span>
+</button>
+</div>
+<!-- API Item 4 -->
+<div class="group bg-surface-container-lowest border border-outline-variant/20 rounded-xl p-md hover:border-primary/50 hover:shadow-lg transition-all duration-300 flex items-center gap-md relative">
+<div class="drag-handle p-xs hover:bg-surface-container rounded-lg transition-colors text-outline">
+<span class="material-symbols-outlined">drag_indicator</span>
+</div>
+<div class="w-12 h-12 rounded-lg bg-surface flex items-center justify-center border border-outline-variant/30 overflow-hidden">
+<img class="w-8 h-8 object-contain" data-alt="A sharp, minimalist icon for a fraud detection API, using a shield motif designed with futuristic, digital line-art in deep crimson and charcoal. The visual style is high-tech and secure, aimed at technical users of a premium SaaS platform. The imagery should be crisp and high-resolution, centered on a white tile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKUQLEeYnUPCLDbU9_9E9OFrqL3r8LWY9tVVyPF3B014VnNivWiC4WfKrZ5Rv_c7vzUBm7HPDE3mIiOzaH36sdUcVKS15vEhrXVCEptvptTKQSHEKpdzntynDua4sNnnNBqpaThcPxFNMP9oPBEtBkkACEgQ8sjmgXsqjyNKSMgYmCUGWwvgun_SvBznhDVR8KOH9zeFWPZrKXEO06IXMoswbhls7IN_lJp_iys-FdiJ8xXge3lYnLiGBXi-l-zXoYa-G0dn0zpfav"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-sm">
+<h3 class="font-body-md text-body-md font-bold text-on-surface truncate">ShieldGuard Fraud AI</h3>
+<span class="bg-error/10 text-error px-xs py-0.5 rounded text-[10px] font-bold uppercase border border-error/20">Critical</span>
+</div>
+<p class="text-body-sm text-on-surface-variant truncate">v4.2.1 • ML-powered real-time transaction screening</p>
+</div>
+<div class="hidden lg:flex flex-col items-end gap-xs mr-xl">
+<div class="flex items-center gap-sm text-[12px] font-mono text-on-surface-variant bg-surface px-sm py-0.5 rounded border border-outline-variant/30">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                100% Uptime
+                            </div>
+<span class="text-[10px] text-on-surface-variant/60">Last sync: 5 mins ago</span>
+</div>
+<button class="p-sm text-on-surface-variant hover:text-error hover:bg-error/5 rounded-lg transition-all group-hover:opacity-100" title="Remove from Collection">
+<span class="material-symbols-outlined">delete_outline</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Contextual FAB (Custom Logic) -->
+<button class="fixed bottom-lg right-lg w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all md:hidden z-40">
+<span class="material-symbols-outlined">add</span>
+</button>
+<script>
+        // Micro-interactions for list items
+        document.querySelectorAll('.group').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'translateY(-2px)';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Simple mock for "Remove from Collection"
+        document.querySelectorAll('button[title="Remove from Collection"]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const row = e.target.closest('.group');
+                row.style.opacity = '0';
+                row.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    row.style.display = 'none';
+                }, 300);
+            });
+        });
+    </script>
+</body></html>

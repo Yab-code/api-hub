@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>APIHub - OpenAI API Details</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist+Mono:wght@400;450&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#dae2fd",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#f8f9ff",
+                    "outline": "#777587",
+                    "on-surface": "#0b1c30",
+                    "on-background": "#0b1c30",
+                    "primary-container": "#4f46e5",
+                    "tertiary-container": "#006e4b",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "secondary": "#565e74",
+                    "on-tertiary-container": "#67f4b7",
+                    "tertiary-fixed": "#6ffbbe",
+                    "inverse-on-surface": "#eaf1ff",
+                    "inverse-surface": "#213145",
+                    "surface-container": "#e5eeff",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#3525cd",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "surface-tint": "#4d44e3",
+                    "on-surface-variant": "#464555",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#cbdbf5",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "error": "#ba1a1a",
+                    "background": "#f8f9ff",
+                    "surface-variant": "#d3e4fe",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#c3c0ff",
+                    "on-tertiary-fixed": "#002113",
+                    "surface": "#f8f9ff",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-secondary-fixed": "#131b2e",
+                    "on-primary-fixed": "#0f0069",
+                    "primary-fixed": "#e2dfff",
+                    "on-primary-container": "#dad7ff",
+                    "surface-container-low": "#eff4ff",
+                    "surface-container-high": "#dce9ff",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "secondary-container": "#dae2fd",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#5c647a",
+                    "tertiary": "#005338",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#c7c4d8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "3xl": "64px",
+                    "lg": "24px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "xl": "32px",
+                    "2xl": "48px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "code": ["Geist Mono"],
+                    "body-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "code": ["14px", {"lineHeight": "20px", "fontWeight": "450"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .code-block {
+            background: #0f172a;
+            color: #cbd5e1;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            font-family: 'Geist Mono', monospace;
+            position: relative;
+        }
+        .code-keyword { color: #818cf8; }
+        .code-string { color: #34d399; }
+        .code-method { color: #fbbf24; }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm">
+<div class="flex justify-between items-center px-lg h-16 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-xl">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">APIHub</span>
+<nav class="hidden md:flex gap-lg items-center">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Solutions</a>
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary" href="#">Docs</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none w-64 text-body-sm" placeholder="Search APIs..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">help_outline</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a young software engineer with a friendly smile, clean minimalist lighting, high-end digital photography style, soft neutral background, wearing a modern dark navy polo shirt." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcym5IQRfldPDip7_g225Yk-kewPJ20ZsoRaM95HivQaLY3snkAjhSkMSKWGl9ozqfCSR7OCx077IdMU-1jTuHvMnOAT4LFuBGDh4Zx1uldIwUxqgo_v-iHl3SS4yyJKqf0UQbNSKLJy-q4XosvKADSsBC68eWOgut1RtFo0FlNRUV0Op_vy7rHeUK0k-eCP4iDG___INoZl_xPa2TPj-aNGcUyw4OUG-mX-s3EqotqMCb6tsEzxxDlYdjUeISPDkq3c6sfePjt62F"/>
+</div>
+<button class="hidden md:block bg-primary text-on-primary px-md py-2 rounded-lg font-body-sm transition-transform active:scale-95">Create API</button>
+</div>
+</div>
+</header>
+<!-- Sidebar & Main Canvas -->
+<div class="pt-16 flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-surface-container-low/80 backdrop-blur-lg border-r border-outline-variant/20 py-md flex flex-col gap-xs hidden md:flex">
+<div class="px-md mb-md flex items-center gap-sm">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm font-bold text-primary">Project Workspace</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Production Environment</p>
+</div>
+</div>
+<div class="flex-1 space-y-1">
+<a class="flex items-center gap-md px-md py-2.5 text-on-surface-variant hover:bg-primary-container/5 hover:translate-x-1 duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+<span class="font-body-sm text-body-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-2.5 bg-primary-container/10 text-primary border-l-4 border-primary rounded-r-lg group" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-body-sm text-body-sm">Explorer</span>
+</a>
+<a class="flex items-center gap-md px-md py-2.5 text-on-surface-variant hover:bg-primary-container/5 hover:translate-x-1 duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">api</span>
+<span class="font-body-sm text-body-sm">My APIs</span>
+</a>
+<a class="flex items-center gap-md px-md py-2.5 text-on-surface-variant hover:bg-primary-container/5 hover:translate-x-1 duration-200 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">settings</span>
+<span class="font-body-sm text-body-sm">Settings</span>
+</a>
+</div>
+<div class="mt-auto px-md space-y-4">
+<button class="w-full bg-secondary-container text-on-secondary-container py-2.5 rounded-xl font-bold font-body-sm hover:shadow-md transition-all">Upgrade Plan</button>
+<div class="pt-4 border-t border-outline-variant/20">
+<a class="flex items-center gap-md py-2 text-on-surface-variant font-body-sm hover:text-primary" href="#">
+<span class="material-symbols-outlined">description</span> Documentation
+                    </a>
+<a class="flex items-center gap-md py-2 text-on-surface-variant font-body-sm hover:text-error" href="#">
+<span class="material-symbols-outlined">logout</span> Log out
+                    </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-64 flex-1 w-full relative">
+<!-- API Header Section -->
+<div class="bg-surface-bright border-b border-outline-variant/20">
+<div class="max-w-container-max mx-auto px-lg py-xl">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-lg">
+<div class="flex items-start gap-md">
+<div class="w-16 h-16 rounded-2xl border border-outline-variant bg-white flex items-center justify-center p-2 shadow-sm">
+<img class="w-full h-full object-contain" data-alt="A minimalist tech company logo design for OpenAI, featuring high-contrast geometric forms and a pristine white background. The style is ultra-modern, professional, and corporate, representing cutting-edge artificial intelligence and high-performance computing in a sleek SaaS ecosystem." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBB2Aluuh6J4rklJam-NRH2AvyQguy2aOH9BAvtjUqy7c6srrOTbO5ZVH7rHy74eTGvXdFYJm4N7RlgcE6BShuzwh3y3orauL3EmVz9oD_SLogvX4ozLKwq9SNQpvlEI2Bvsd6S_g8Vxd3fosLuqgrEVYZDCghY8UlzzEKOP_tSjsLVtiY9hqDh7ucuSsMxDHJJoRSKPCofxZEPOOeRr9TLQIX5-w3DNycXBSZcYDGFdSF91ALDjvVd3tecD8ZkSRpY_3QGKlKi-iDq"/>
+</div>
+<div>
+<div class="flex items-center gap-sm">
+<h1 class="font-headline-md text-headline-md text-on-surface">OpenAI API</h1>
+<span class="bg-tertiary-container/10 text-tertiary px-3 py-1 rounded-full text-[12px] font-bold uppercase tracking-wider">Verified</span>
+</div>
+<p class="text-on-surface-variant mt-1 max-w-2xl">Integrate state-of-the-art language and vision models into your applications. GPT-4, GPT-3.5, and DALL·E 3 access available via robust RESTful endpoints.</p>
+<div class="flex gap-md mt-4">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                                        &lt;</div></div></div></div></div></div></div></main></div></body></html>

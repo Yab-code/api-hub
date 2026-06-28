@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>APIHub | API Tester</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts: Inter & Geist Mono -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Design System Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#dae2fd",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#f8f9ff",
+                    "outline": "#777587",
+                    "on-surface": "#0b1c30",
+                    "on-background": "#0b1c30",
+                    "primary-container": "#4f46e5",
+                    "tertiary-container": "#006e4b",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "secondary": "#565e74",
+                    "on-tertiary-container": "#67f4b7",
+                    "tertiary-fixed": "#6ffbbe",
+                    "inverse-on-surface": "#eaf1ff",
+                    "inverse-surface": "#213145",
+                    "surface-container": "#e5eeff",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#3525cd",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "surface-tint": "#4d44e3",
+                    "on-surface-variant": "#464555",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#cbdbf5",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "error": "#ba1a1a",
+                    "background": "#f8f9ff",
+                    "surface-variant": "#d3e4fe",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#c3c0ff",
+                    "on-tertiary-fixed": "#002113",
+                    "surface": "#f8f9ff",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-secondary-fixed": "#131b2e",
+                    "on-primary-fixed": "#0f0069",
+                    "primary-fixed": "#e2dfff",
+                    "on-primary-container": "#dad7ff",
+                    "surface-container-low": "#eff4ff",
+                    "surface-container-high": "#dce9ff",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "secondary-container": "#dae2fd",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#5c647a",
+                    "tertiary": "#005338",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#c7c4d8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "3xl": "64px",
+                    "lg": "24px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "xl": "32px",
+                    "2xl": "48px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "code": ["Geist Mono"],
+                    "body-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .syntax-string { color: #A5D6A7; }
+        .syntax-number { color: #CE9178; }
+        .syntax-key { color: #9CDCFE; }
+        .syntax-boolean { color: #569CD6; }
+        
+        .editor-dark {
+            background-color: #0F172A;
+            color: #E2E8F0;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm h-16 flex items-center">
+<div class="flex justify-between items-center px-lg w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-xl">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">APIHub</span>
+<div class="hidden md:flex gap-md">
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Solutions</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Docs</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-transform active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-transform active:scale-95">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<button class="bg-primary text-on-primary px-md py-sm rounded-lg font-body-md active:scale-95 transition-transform">
+                    Create API
+                </button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional user profile avatar in a clean, minimalist style. The avatar represents a modern software developer with a neutral expression, set against a soft, geometric gradient background that reflects a high-tech corporate ecosystem." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNCTZ8c7EaCXJEYVeSNqyh0nwavcXj3oXHuhM_Fig06lo9XTmZ57GpUFNJ5JBXzbqoQ9kqrLvRzfctnCXebT3kd0MdbUQiqAMigrb_KhsqngfZcnRtYh0xYZSKDmPjqkz-dpVjLBg93NJxifigaw33ILce0Rgvdvol_2YnBnDWUB8BOqswKj--B5W6aDcLHBnu9dlw5fH76ziJhxMSa69-sd5gBsS5zIQgJ9h1MwJWg4Bb_4MA6IZGwg67M0vvNIsePlaGc0l6w_w-"/>
+</div>
+</div>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-surface-container-low/80 backdrop-blur-lg border-r border-outline-variant/20 flex flex-col py-md gap-xs">
+<div class="px-md mb-md">
+<div class="flex items-center gap-sm mb-base">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]">api</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-sm font-bold text-primary">Project Workspace</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wider">Production Env</span>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-sm space-y-1">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-primary-container/5 hover:translate-x-1 transition-all duration-200 font-body-sm" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-primary-container/5 hover:translate-x-1 transition-all duration-200 font-body-sm" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span>Explorer</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm bg-primary-container/10 text-primary border-l-4 border-primary rounded-r-lg font-body-sm" href="#">
+<span class="material-symbols-outlined">api</span>
+<span>My APIs</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-primary-container/5 hover:translate-x-1 transition-all duration-200 font-body-sm" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="px-md mt-auto pt-md space-y-4">
+<button class="w-full bg-secondary-container text-on-secondary-container py-sm rounded-lg font-label-caps uppercase hover:brightness-95 transition-all">
+                Upgrade Plan
+            </button>
+<div class="space-y-1">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-primary-container/5 transition-all font-body-sm" href="#">
+<span class="material-symbols-outlined">description</span>
+<span>Documentation</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-error hover:bg-error/5 transition-all font-body-sm" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span>Log out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Stage -->
+<main class="ml-64 mt-16 p-lg bg-background min-h-[calc(100vh-64px)] overflow-y-auto">
+<div class="max-w-container-max mx-auto space-y-lg">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface">API Tester</h1>
+<p class="text-on-surface-variant font-body-md">Debug and test your endpoints with real-time response data.</p>
+</div>
+<div class="flex items-center gap-sm">
+<div class="flex bg-surface-container rounded-lg p-1">
+<button class="px-md py-1 rounded-md text-on-surface font-body-sm bg-white shadow-sm">Main Branch</button>
+<button class="px-md py-1 rounded-md text-on-surface-variant font-body-sm hover:text-on-surface">Dev Branch</button>
+</div>
+<button class="flex items-center gap-xs px-md py-sm border border-outline-variant rounded-lg font-body-sm hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">history</span>
+                        History
+                    </button>
+</div>
+</div>
+<!-- Testing Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-lg h-full lg:h-[750px]">
+<!-- Request Panel -->
+<section class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl flex flex-col overflow-hidden shadow-sm">
+<div class="p-md border-b border-outline-variant/20 flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">send</span>
+<h2 class="font-headline-sm text-[18px]">Request</h2>
+</div>
+<span class="text-[12px] font-label-caps text-on-surface-variant uppercase">v2.4.0</span>
+</div>
+<div class="flex-1 flex flex-col p-lg gap-lg">
+<!-- URL Bar -->
+<div class="flex gap-sm">
+<div class="relative min-w-[120px]">
+<select class="w-full appearance-none bg-surface-container-low border border-outline-variant rounded-lg px-md py-3 font-body-sm text-primary font-bold focus:ring-2 focus:ring-primary focus:outline-none">
+<option>GET</option>
+<option>POST</option>
+<option>PUT</option>
+<option>DELETE</option>
+<option>PATCH</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-3 text-[20px] pointer-events-none">expand_more</span>
+</div>
+<div class="flex-1 flex items-center bg-surface-container-low border border-outline-variant rounded-lg px-md overflow-hidden">
+<span class="text-on-surface-variant font-code text-body-sm whitespace-nowrap mr-xs">https://api.hub.com/v1/</span>
+<input class="flex-1 bg-transparent border-none focus:ring-0 font-code text-body-sm text-on-surface py-3" placeholder="endpoint" type="text" value="users/profile"/>
+</div>
+<button class="bg-primary-container text-on-primary px-xl py-3 rounded-lg font-body-md font-bold hover:brightness-110 active:scale-95 transition-all flex items-center gap-sm">
+<span>Send</span>
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+</button>
+</div>
+<!-- Request Tabs -->
+<div class="flex-1 flex flex-col">
+<div class="flex border-b border-outline-variant/20 gap-lg mb-md">
+<button class="py-2 font-body-sm font-bold text-primary border-b-2 border-primary">Headers (3)</button>
+<button class="py-2 font-body-sm text-on-surface-variant hover:text-on-surface transition-colors">Parameters</button>
+<button class="py-2 font-body-sm text-on-surface-variant hover:text-on-surface transition-colors">Body</button>
+<button class="py-2 font-body-sm text-on-surface-variant hover:text-on-surface transition-colors">Auth</button>
+</div>
+<!-- JSON Editor Simulated Area -->
+<div class="flex-1 editor-dark rounded-xl p-lg font-code text-code relative group overflow-hidden">
+<div class="absolute right-4 top-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 bg-slate-800 rounded hover:bg-slate-700 text-slate-300">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+<div class="flex gap-md h-full custom-scrollbar overflow-y-auto">
+<div class="text-slate-600 select-none text-right pr-md border-r border-slate-800/50">
+                                        1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10
+                                    </div>
+<div class="flex-1 whitespace-pre">
+<span class="text-slate-400">{</span>
+<span class="syntax-key">"user_id"</span>: <span class="syntax-number">129485</span>,
+  <span class="syntax-key">"options"</span>: <span class="text-slate-400">{</span>
+<span class="syntax-key">"detailed"</span>: <span class="syntax-boolean">true</span>,
+    <span class="syntax-key">"include_meta"</span>: <span class="syntax-boolean">false</span>
+<span class="text-slate-400">}</span>,
+  <span class="syntax-key">"tags"</span>: <span class="text-slate-400">[</span><span class="syntax-string">"beta"</span>, <span class="syntax-string">"verified"</span><span class="text-slate-400">]</span>,
+  <span class="syntax-key">"context"</span>: <span class="syntax-string">"test-environment"</span>
+<span class="text-slate-400">}</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Response Panel -->
+<section class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl flex flex-col overflow-hidden shadow-sm">
+<div class="p-md border-b border-outline-variant/20 flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-tertiary">analytics</span>
+<h2 class="font-headline-sm text-[18px]">Response</h2>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-xs">
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<span class="text-[12px] font-bold text-green-600">200 OK</span>
+</div>
+<span class="text-[12px] text-on-surface-variant border-l border-outline-variant/30 pl-md">142ms</span>
+<span class="text-[12px] text-on-surface-variant border-l border-outline-variant/30 pl-md">2.4 KB</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col p-lg gap-lg">
+<div class="flex items-center justify-between">
+<div class="flex gap-md">
+<button class="px-md py-1.5 rounded-lg bg-surface-container font-body-sm font-bold text-on-surface">Pretty</button>
+<button class="px-md py-1.5 rounded-lg text-on-surface-variant font-body-sm hover:text-on-surface">Raw</button>
+<button class="px-md py-1.5 rounded-lg text-on-surface-variant font-body-sm hover:text-on-surface">Preview</button>
+</div>
+<button class="text-primary font-body-sm font-bold flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                                Export
+                            </button>
+</div>
+<!-- JSON Viewer Area -->
+<div class="flex-1 editor-dark rounded-xl p-lg font-code text-code overflow-hidden flex flex-col">
+<div class="flex-1 custom-scrollbar overflow-y-auto">
+<div class="flex gap-md">
+<div class="text-slate-600 select-none text-right pr-md">
+                                        1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15
+                                    </div>
+<div class="flex-1">
+<span class="text-slate-400">{</span>
+<div class="pl-4">
+<span class="syntax-key">"status"</span>: <span class="syntax-string">"success"</span>,
+    <span class="syntax-key">"data"</span>: <span class="text-slate-400">{</span>
+<div class="pl-4">
+<div class="flex items-center gap-1 -ml-6">
+<span class="material-symbols-outlined text-slate-500 text-[14px] cursor-pointer">arrow_drop_down</span>
+<span class="syntax-key">"user"</span>: <span class="text-slate-400">{</span>
+</div>
+<div class="pl-4">
+<span class="syntax-key">"id"</span>: <span class="syntax-string">"usr_9x21"</span>,
+            <span class="syntax-key">"username"</span>: <span class="syntax-string">"dev_nexus"</span>,
+            <span class="syntax-key">"email"</span>: <span class="syntax-string">"nexus@apihub.com"</span>,
+            <span class="syntax-key">"plan"</span>: <span class="syntax-string">"enterprise"</span>,
+            <span class="syntax-key">"active"</span>: <span class="syntax-boolean">true</span>
+</div>
+<span class="text-slate-400">}</span>,
+        <span class="syntax-key">"last_login"</span>: <span class="syntax-string">"2023-11-20T14:32:01Z"</span>,
+        <span class="syntax-key">"api_calls_count"</span>: <span class="syntax-number">142055</span>
+</div>
+<span class="text-slate-400">}</span>,
+    <span class="syntax-key">"request_id"</span>: <span class="syntax-string">"req_f82j190x"</span>
+</div>
+<span class="text-slate-400">}</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Secondary Info / History Bento Section -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="md:col-span-1 bg-surface-container-high p-lg rounded-xl flex flex-col justify-between">
+<div>
+<h3 class="font-headline-sm text-[16px] text-on-surface mb-sm">Quick Snippets</h3>
+<p class="text-on-surface-variant text-body-sm">Copy formatted code blocks for your application integration.</p>
+</div>
+<div class="flex flex-wrap gap-sm mt-md">
+<button class="bg-white border border-outline-variant px-sm py-1 rounded text-[12px] font-bold">cURL</button>
+<button class="bg-white border border-outline-variant px-sm py-1 rounded text-[12px] font-bold">JavaScript</button>
+<button class="bg-white border border-outline-variant px-sm py-1 rounded text-[12px] font-bold">Python</button>
+<button class="bg-white border border-outline-variant px-sm py-1 rounded text-[12px] font-bold">Go</button>
+</div>
+</div>
+<div class="md:col-span-2 bg-white border border-outline-variant/30 rounded-xl p-lg flex items-center gap-xl relative overflow-hidden">
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="relative z-10 flex-1">
+<h3 class="font-headline-sm text-[18px] text-primary mb-xs">Real-time collaboration is here</h3>
+<p class="text-on-surface-variant text-body-sm max-w-md">Invite team members to view and comment on your API testing sessions in real-time. Share results instantly with a persistent link.</p>
+<button class="mt-md text-primary font-bold text-body-sm flex items-center gap-xs group">
+                            Learn about Teams
+                            <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+<div class="hidden sm:block w-32 h-32 bg-primary-container/10 rounded-2xl flex items-center justify-center rotate-3 border border-primary/20">
+<span class="material-symbols-outlined text-[48px] text-primary">groups</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB for quick action (Conditional check: Hide on Details, show on Home/Dashboard/Tester) -->
+<button class="fixed bottom-lg right-lg w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+<script>
+        // Micro-interactions for tabs
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.classList.contains('text-on-surface-variant')) {
+                    // Logic to swap active states could go here
+                }
+            });
+        });
+
+        // Request animation simulation
+        const sendBtn = document.querySelector('button:has(span:contains("Send"))');
+        if(sendBtn) {
+            sendBtn.addEventListener('click', () => {
+                const boltIcon = sendBtn.querySelector('.material-symbols-outlined');
+                boltIcon.style.animation = 'pulse 0.5s infinite';
+                setTimeout(() => {
+                    boltIcon.style.animation = 'none';
+                }, 1000);
+            });
+        }
+
+        // Custom selector for bolt pulse
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes pulse {
+                0% { opacity: 1; transform: scale(1); }
+                50% { opacity: 0.5; transform: scale(1.2); }
+                100% { opacity: 1; transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body></html>

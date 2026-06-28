@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>APIHub - Forgot Password</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@450&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#eff4ff",
+                      "surface-container-highest": "#d3e4fe",
+                      "primary-fixed": "#e2dfff",
+                      "on-tertiary": "#ffffff",
+                      "outline": "#777587",
+                      "secondary-fixed": "#dae2fd",
+                      "outline-variant": "#c7c4d8",
+                      "on-primary-fixed": "#0f0069",
+                      "on-error-container": "#93000a",
+                      "on-background": "#0b1c30",
+                      "on-tertiary-container": "#67f4b7",
+                      "tertiary": "#005338",
+                      "on-surface-variant": "#464555",
+                      "surface-container-high": "#dce9ff",
+                      "inverse-primary": "#c3c0ff",
+                      "secondary": "#565e74",
+                      "tertiary-container": "#006e4b",
+                      "inverse-on-surface": "#eaf1ff",
+                      "surface-bright": "#f8f9ff",
+                      "on-secondary-fixed": "#131b2e",
+                      "surface-dim": "#cbdbf5",
+                      "on-secondary-container": "#5c647a",
+                      "surface-variant": "#d3e4fe",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "on-tertiary-fixed": "#002113",
+                      "primary-container": "#4f46e5",
+                      "surface": "#f8f9ff",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "on-surface": "#0b1c30",
+                      "on-primary-container": "#dad7ff",
+                      "surface-container": "#e5eeff",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "inverse-surface": "#213145",
+                      "surface-container-lowest": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "on-primary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "primary": "#3525cd",
+                      "surface-tint": "#4d44e3",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed-variant": "#005236",
+                      "tertiary-fixed": "#6ffbbe",
+                      "background": "#f8f9ff",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#4edea3",
+                      "secondary-container": "#dae2fd"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "sm": "8px",
+                      "container-max": "1280px",
+                      "lg": "24px",
+                      "xs": "4px",
+                      "2xl": "48px",
+                      "xl": "32px",
+                      "gutter": "24px",
+                      "md": "16px",
+                      "3xl": "64px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "headline-sm": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "code": [
+                              "Geist"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-sm": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "30px",
+                              {
+                                      "lineHeight": "36px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "code": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "450"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+        
+        /* Interactive Card Lift */
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            border-color: #4F46E5; /* Indigo primary hover indication */
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="h-full bg-background flex items-center justify-center font-sans antialiased text-on-background relative overflow-hidden">
+<!-- Background Decor (Minimalistic) -->
+<div aria-hidden="true" class="absolute inset-0 z-0 pointer-events-none">
+<svg class="absolute w-full h-full opacity-[0.03]" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="40" id="grid-pattern" patternunits="userSpaceOnUse" width="40">
+<path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1"></path>
+</pattern>
+</defs>
+<rect class="text-on-surface-variant" fill="url(#grid-pattern)" height="100%" width="100%"></rect>
+</svg>
+<div class="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-surface-container-low to-transparent rounded-bl-full blur-3xl opacity-60"></div>
+<div class="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-surface-container-high to-transparent rounded-tr-full blur-3xl opacity-40"></div>
+</div>
+<!-- Main Content Canvas -->
+<main class="relative z-10 w-full max-w-md px-md md:px-0">
+<div class="text-center mb-xl">
+<a class="inline-flex items-center gap-sm group" href="/">
+<div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined font-semibold">hub</span>
+</div>
+<span class="font-headline-sm text-headline-sm font-bold text-on-background tracking-tight">APIHub</span>
+</a>
+</div>
+<div class="glass-panel rounded-[16px] p-[24px] w-full">
+<div id="request-form">
+<div class="mb-lg">
+<h1 class="font-headline-md text-headline-md text-on-surface mb-sm">Reset Password</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Enter your email address and we'll send you a link to reset your password.
+                    </p>
+</div>
+<form class="space-y-lg" onsubmit="handleReset(event)">
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-xs" for="email">Email Address</label>
+<input class="w-full h-12 px-md py-sm bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-transparent transition-all placeholder-outline placeholder:font-body-md" id="email" name="email" placeholder="name@company.com" required="" type="email"/>
+</div>
+<button class="w-full h-12 flex items-center justify-center gap-sm bg-primary-container hover:bg-surface-tint text-on-primary font-label-caps text-label-caps rounded-lg transition-colors shadow-sm active:scale-[0.98]" type="submit">
+                        Send Reset Link
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+</div>
+<div class="hidden text-center py-lg" id="success-message">
+<div class="w-16 h-16 mx-auto bg-surface-container-high rounded-full flex items-center justify-center text-primary-container mb-md">
+<span class="material-symbols-outlined text-[32px]">mark_email_read</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-sm">Check your email</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">
+                    If an account exists for <strong class="text-on-surface" id="submitted-email"></strong>, a reset link has been sent.
+                </p>
+<button class="font-label-caps text-label-caps text-primary-container hover:text-primary transition-colors underline-offset-4 hover:underline" onclick="resetForm()">
+                    Try another email
+                </button>
+</div>
+<div class="mt-lg pt-lg border-t border-outline-variant/30 text-center">
+<a class="inline-flex items-center gap-xs font-body-sm text-body-sm text-on-surface-variant hover:text-primary-container transition-colors group" href="/login">
+<span class="material-symbols-outlined text-[16px] group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                    Back to Login
+                </a>
+</div>
+</div>
+<div class="mt-xl text-center">
+<p class="font-body-sm text-body-sm text-outline">
+                Need help? <a class="text-primary hover:underline underline-offset-4" href="#">Contact Support</a>
+</p>
+</div>
+</main>
+<script>
+        function handleReset(event) {
+            event.preventDefault();
+            const emailInput = document.getElementById('email').value;
+            
+            // Simple visual transition for demo
+            document.getElementById('request-form').classList.add('hidden');
+            document.getElementById('success-message').classList.remove('hidden');
+            document.getElementById('submitted-email').textContent = emailInput;
+        }
+
+        function resetForm() {
+            document.getElementById('request-form').classList.remove('hidden');
+            document.getElementById('success-message').classList.add('hidden');
+            document.getElementById('email').value = '';
+            document.getElementById('email').focus();
+        }
+    </script>
+</body></html>

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>API Explorer | APIHub</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Geist:wght@400;450&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Shared Style & Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#dae2fd",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#f8f9ff",
+                    "outline": "#777587",
+                    "on-surface": "#0b1c30",
+                    "on-background": "#0b1c30",
+                    "primary-container": "#4f46e5",
+                    "tertiary-container": "#006e4b",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "secondary": "#565e74",
+                    "on-tertiary-container": "#67f4b7",
+                    "tertiary-fixed": "#6ffbbe",
+                    "inverse-on-surface": "#eaf1ff",
+                    "inverse-surface": "#213145",
+                    "surface-container": "#e5eeff",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#3525cd",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "surface-tint": "#4d44e3",
+                    "on-surface-variant": "#464555",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#cbdbf5",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "error": "#ba1a1a",
+                    "background": "#f8f9ff",
+                    "surface-variant": "#d3e4fe",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#c3c0ff",
+                    "on-tertiary-fixed": "#002113",
+                    "surface": "#f8f9ff",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-secondary-fixed": "#131b2e",
+                    "on-primary-fixed": "#0f0069",
+                    "primary-fixed": "#e2dfff",
+                    "on-primary-container": "#dad7ff",
+                    "surface-container-low": "#eff4ff",
+                    "surface-container-high": "#dce9ff",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "secondary-container": "#dae2fd",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#5c647a",
+                    "tertiary": "#005338",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#c7c4d8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "3xl": "64px",
+                    "lg": "24px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "xl": "32px",
+                    "2xl": "48px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "code": ["Geist"],
+                    "body-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "code": ["14px", {"lineHeight": "20px", "fontWeight": "450"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(248, 249, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        body {
+            background-color: #f8f9ff;
+            color: #0b1c30;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm h-16">
+<div class="flex justify-between items-center px-lg h-full w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-xl">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">APIHub</span>
+<nav class="hidden md:flex gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Solutions</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Docs</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Pricing</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Support</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-2 active:scale-95 transition-transform" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-2 active:scale-95 transition-transform" data-icon="help_outline">help_outline</button>
+<button class="bg-primary-container text-on-primary px-lg py-sm rounded-lg font-bold active:scale-95 transition-transform">Create API</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant/30 overflow-hidden ml-2">
+<img class="w-full h-full object-cover" data-alt="A professional user avatar in a sleek, circular frame. The portrait is a clean, minimalist 3D rendering of a generic male character with soft lighting, matching the modern corporate aesthetic of the platform. The background is a subtle gradient of light blue and indigo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlUB7pqVH6vUgZycMGSKUKjuM8yslNZ4XcUiRxp9q1q9qbEU5vomtrzUTcT8Er06VvKrpKWWwiq6ZeQqgzRGMRzmUqmVfmt23m9ZjXI5MnXvx1xjG1vVAmBbFdwWC1ERCK6FA2Gv1hgJC-sx_QXzwFnYHtZ7PthTx88R8zznz7WGU7BsgTDRZ5nVpGIG7FymFmm9eVzO5nR3qz3gv0nWRNzLArFeQp4e6cM-P0pLVUd5oY1Qy61m01VSc46irR4_JDeumcpoGy1Ixl"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-surface-container-low/80 backdrop-blur-lg border-r border-outline-variant/20 py-md flex flex-col gap-xs z-40">
+<div class="px-md mb-md">
+<div class="flex items-center gap-sm p-sm">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface text-body-sm leading-tight">Project Workspace</h4>
+<p class="text-xs text-on-surface-variant">Production Environment</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-xs">
+<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-primary-container/5 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-sm text-body-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-lg py-sm bg-primary-container/10 text-primary border-l-4 border-primary rounded-r-lg font-bold translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-body-sm text-body-sm">Explorer</span>
+</a>
+<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-primary-container/5 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="api">api</span>
+<span class="font-body-sm text-body-sm">My APIs</span>
+</a>
+<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-primary-container/5 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-sm text-body-sm">Settings</span>
+</a>
+</nav>
+<div class="px-md mt-auto flex flex-col gap-xs">
+<div class="p-md bg-primary/5 rounded-xl mb-md border border-primary/10">
+<p class="text-xs font-bold text-primary mb-sm">Upgrade Plan</p>
+<p class="text-[11px] text-on-surface-variant mb-md">Unlock higher rate limits and enterprise features.</p>
+<button class="w-full py-1 text-xs bg-primary text-white rounded-md font-bold">Learn More</button>
+</div>
+<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-surface-variant/50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-body-sm text-body-sm">Documentation</span>
+</a>
+<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-surface-variant/50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-sm text-body-sm">Log out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-16 min-h-screen">
+<div class="max-w-container-max mx-auto px-lg py-xl">
+<!-- Header & Search -->
+<section class="mb-3xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-lg mb-xl">
+<div class="max-w-2xl w-full">
+<h1 class="font-headline-md text-headline-md text-on-surface mb-sm">Explore API Marketplace</h1>
+<p class="text-on-surface-variant mb-xl max-w-lg">Discover, test, and integrate premium APIs from leading developers across the globe.</p>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors" data-icon="search">search</span>
+<input class="w-full h-14 pl-12 pr-4 bg-white border border-outline-variant/40 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none shadow-sm text-body-md transition-all" placeholder="Search for payments, AI models, data storage..." type="text"/>
+<kbd class="absolute right-4 top-1/2 -translate-y-1/2 bg-surface-container-high px-2 py-1 rounded text-xs text-on-surface-variant font-code">⌘ K</kbd>
+</div>
+</div>
+<!-- View Toggle -->
+<div class="flex items-center gap-base p-1 bg-surface-container-low border border-outline-variant/30 rounded-lg h-fit">
+<button class="p-2 rounded-md bg-white shadow-sm text-primary transition-all" id="grid-toggle">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+</button>
+<button class="p-2 rounded-md text-on-surface-variant hover:bg-white/50 transition-all" id="list-toggle">
+<span class="material-symbols-outlined" data-icon="view_list">view_list</span>
+</button>
+</div>
+</div>
+</section>
+<div class="flex flex-col lg:flex-row gap-gutter">
+<!-- Filters Sidebar -->
+<aside class="w-full lg:w-64 shrink-0 flex flex-col gap-xl">
+<!-- Categories -->
+<div>
+<h3 class="font-bold text-on-surface text-body-sm mb-md uppercase tracking-wider opacity-60">Categories</h3>
+<div class="flex flex-wrap lg:flex-col gap-sm">
+<label class="flex items-center gap-sm cursor-pointer group">
+<input checked="" class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">All APIs</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Artificial Intelligence</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Payments</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Messaging</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Cloud Computing</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Analytics</span>
+</label>
+</div>
+</div>
+<!-- Auth Filters -->
+<div>
+<h3 class="font-bold text-on-surface text-body-sm mb-md uppercase tracking-wider opacity-60">Authentication</h3>
+<div class="flex flex-wrap lg:flex-col gap-sm">
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">API Key</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">OAuth 2.0</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">None (Public)</span>
+</label>
+</div>
+</div>
+<!-- Status Filter -->
+<div class="p-md bg-white border border-outline-variant/30 rounded-xl">
+<div class="flex items-center justify-between mb-sm">
+<span class="text-xs font-bold text-on-surface-variant">Active Instances</span>
+<span class="text-xs bg-tertiary/10 text-tertiary px-2 py-0.5 rounded-full font-bold">Live</span>
+</div>
+<div class="h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-4/5"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant mt-sm">99.98% overall network uptime across 240 endpoints.</p>
+</div>
+</aside>
+<!-- Results Grid -->
+<div class="flex-1">
+<!-- Results Header -->
+<div class="flex items-center justify-between mb-lg">
+<p class="text-on-surface-variant text-body-sm">Showing 1-12 of 284 results</p>
+<div class="flex items-center gap-sm">
+<span class="text-body-sm text-on-surface-variant">Sort by:</span>
+<select class="bg-transparent border-none text-on-surface font-bold text-body-sm focus:ring-0 cursor-pointer">
+<option>Most Popular</option>
+<option>Newest</option>
+<option>Highest Rated</option>
+<option>Performance</option>
+</select>
+</div>
+</div>
+<!-- API Card Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-lg" id="api-grid">
+<!-- Card 1 -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-lg flex flex-col gap-md hover:border-primary hover:shadow-lg transition-all duration-300 group cursor-pointer relative overflow-hidden">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary border border-outline-variant/20">
+<span class="material-symbols-outlined text-[32px]" data-icon="neurology">neurology</span>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-xs text-yellow-500">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.9</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">(2.4k reviews)</span>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">NeuralMind Core</h4>
+<p class="text-body-sm text-on-surface-variant mt-sm line-clamp-2">Enterprise-grade LLM orchestration with context injection and native RAG capabilities.</p>
+</div>
+<div class="mt-auto flex flex-wrap gap-xs">
+<span class="bg-primary/5 text-primary text-[10px] font-bold px-2 py-1 rounded-md">AI / ML</span>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] font-bold px-2 py-1 rounded-md">OAuth</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-lg flex flex-col gap-md hover:border-primary hover:shadow-lg transition-all duration-300 group cursor-pointer">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-tertiary border border-outline-variant/20">
+<span class="material-symbols-outlined text-[32px]" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-xs text-yellow-500">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.8</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">(1.2k reviews)</span>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">SwiftPay Gateway</h4>
+<p class="text-body-sm text-on-surface-variant mt-sm line-clamp-2">Global multi-currency checkout solution with localized payment methods and high-conversion UI.</p>
+</div>
+<div class="mt-auto flex flex-wrap gap-xs">
+<span class="bg-tertiary/5 text-tertiary text-[10px] font-bold px-2 py-1 rounded-md">Payments</span>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] font-bold px-2 py-1 rounded-md">API Key</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-lg flex flex-col gap-md hover:border-primary hover:shadow-lg transition-all duration-300 group cursor-pointer">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-orange-500 border border-outline-variant/20">
+<span class="material-symbols-outlined text-[32px]" data-icon="forum">forum</span>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-xs text-yellow-500">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.7</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">(850 reviews)</span>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">Echo SMS API</h4>
+<p class="text-body-sm text-on-surface-variant mt-sm line-clamp-2">Programmable SMS, MMS, and WhatsApp messaging with global carrier reach and high deliverability.</p>
+</div>
+<div class="mt-auto flex flex-wrap gap-xs">
+<span class="bg-orange-50 text-orange-600 text-[10px] font-bold px-2 py-1 rounded-md">Messaging</span>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] font-bold px-2 py-1 rounded-md">OAuth</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-lg flex flex-col gap-md hover:border-primary hover:shadow-lg transition-all duration-300 group cursor-pointer">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-blue-500 border border-outline-variant/20">
+<span class="material-symbols-outlined text-[32px]" data-icon="analytics">analytics</span>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-xs text-yellow-500">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.9</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">(3.1k reviews)</span>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">InsightPro Analytics</h4>
+<p class="text-body-sm text-on-surface-variant mt-sm line-clamp-2">Real-time user behavior tracking and data warehousing for high-traffic web applications.</p>
+</div>
+<div class="mt-auto flex flex-wrap gap-xs">
+<span class="bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-1 rounded-md">Data</span>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] font-bold px-2 py-1 rounded-md">API Key</span>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-lg flex flex-col gap-md hover:border-primary hover:shadow-lg transition-all duration-300 group cursor-pointer">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-red-500 border border-outline-variant/20">
+<span class="material-symbols-outlined text-[32px]" data-icon="security">security</span>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-xs text-yellow-500">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.6</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">(620 reviews)</span>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">AuthShield Guard</h4>
+<p class="text-body-sm text-on-surface-variant mt-sm line-clamp-2">Identity-as-a-Service providing secure MFA, biometric auth, and role-based access control.</p>
+</div>
+<div class="mt-auto flex flex-wrap gap-xs">
+<span class="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-md">Security</span>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] font-bold px-2 py-1 rounded-md">None</span>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-lg flex flex-col gap-md hover:border-primary hover:shadow-lg transition-all duration-300 group cursor-pointer">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-purple-600 border border-outline-variant/20">
+<span class="material-symbols-outlined text-[32px]" data-icon="cloud">cloud</span>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-xs text-yellow-500">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.9</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">(1.8k reviews)</span>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">SkyStorage S4</h4>
+<p class="text-body-sm text-on-surface-variant mt-sm line-clamp-2">S3-compatible object storage with global CDN edge caching and automated image processing.</p>
+</div>
+<div class="mt-auto flex flex-wrap gap-xs">
+<span class="bg-purple-50 text-purple-600 text-[10px] font-bold px-2 py-1 rounded-md">Storage</span>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] font-bold px-2 py-1 rounded-md">OAuth</span>
+</div>
+</div>
+<!-- Card 7 -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-lg flex flex-col gap-md hover:border-primary hover:shadow-lg transition-all duration-300 group cursor-pointer">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary border border-outline-variant/20">
+<span class="material-symbols-outlined text-[32px]" data-icon="translate">translate</span>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-xs text-yellow-500">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.5</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">(340 reviews)</span>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">PolyGlot Transcribe</h4>
+<p class="text-body-sm text-on-surface-variant mt-sm line-clamp-2">Real-time audio transcription and translation for 120+ languages with sentiment analysis.</p>
+</div>
+<div class="mt-auto flex flex-wrap gap-xs">
+<span class="bg-primary/5 text-primary text-[10px] font-bold px-2 py-1 rounded-md">Translation</span>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] font-bold px-2 py-1 rounded-md">API Key</span>
+</div>
+</div>
+<!-- Card 8 -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-lg flex flex-col gap-md hover:border-primary hover:shadow-lg transition-all duration-300 group cursor-pointer">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-teal-600 border border-outline-variant/20">
+<span class="material-symbols-outlined text-[32px]" data-icon="map">map</span>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-xs text-yellow-500">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.7</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">(910 reviews)</span>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">GeoSpatial Engine</h4>
+<p class="text-body-sm text-on-surface-variant mt-sm line-clamp-2">High-resolution mapping, geocoding, and routing services for logistics and delivery apps.</p>
+</div>
+<div class="mt-auto flex flex-wrap gap-xs">
+<span class="bg-teal-50 text-teal-600 text-[10px] font-bold px-2 py-1 rounded-md">Geolocation</span>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] font-bold px-2 py-1 rounded-md">OAuth</span>
+</div>
+</div>
+<!-- Card 9 -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-lg flex flex-col gap-md hover:border-primary hover:shadow-lg transition-all duration-300 group cursor-pointer">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-emerald-600 border border-outline-variant/20">
+<span class="material-symbols-outlined text-[32px]" data-icon="database">database</span>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-xs text-yellow-500">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.9</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">(1.5k reviews)</span>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">QueryFlow DB</h4>
+<p class="text-body-sm text-on-surface-variant mt-sm line-clamp-2">Distributed serverless SQL database with zero-latency edge reads and automatic scaling.</p>
+</div>
+<div class="mt-auto flex flex-wrap gap-xs">
+<span class="bg-emerald-50 text-emerald-600 text-[10px] font-bold px-2 py-1 rounded-md">Database</span>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] font-bold px-2 py-1 rounded-md">OAuth</span>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-3xl flex flex-col sm:flex-row items-center justify-between gap-lg border-t border-outline-variant/20 pt-xl">
+<p class="text-body-sm text-on-surface-variant">Showing 1 to 12 of 284 results</p>
+<div class="flex items-center gap-xs">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold">1</button>
+</div></div></div></div></div></main></body></html>

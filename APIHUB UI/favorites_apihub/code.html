@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>APIHub - Favorites</title>
+<!-- Google Fonts: Inter & Geist Mono -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist+Mono:wght@450&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#c7c4d8",
+                    "on-primary-fixed": "#0f0069",
+                    "surface-container-low": "#eff4ff",
+                    "background": "#f8f9ff",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-secondary-container": "#5c647a",
+                    "inverse-surface": "#213145",
+                    "primary-fixed": "#e2dfff",
+                    "outline": "#777587",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-surface-variant": "#464555",
+                    "tertiary-container": "#006e4b",
+                    "surface-container": "#e5eeff",
+                    "on-secondary-fixed": "#131b2e",
+                    "on-background": "#0b1c30",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-tertiary-fixed": "#002113",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "surface-tint": "#4d44e3",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "on-primary-container": "#dad7ff",
+                    "surface-bright": "#f8f9ff",
+                    "secondary": "#565e74",
+                    "surface": "#f8f9ff",
+                    "surface-dim": "#cbdbf5",
+                    "on-tertiary-container": "#67f4b7",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#005338",
+                    "inverse-primary": "#c3c0ff",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "on-surface": "#0b1c30",
+                    "surface-container-high": "#dce9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#dae2fd",
+                    "secondary-container": "#dae2fd",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "primary-container": "#4f46e5",
+                    "surface-variant": "#d3e4fe",
+                    "primary": "#3525cd",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "on-primary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "base": "4px",
+                    "container-max": "1280px",
+                    "3xl": "64px",
+                    "gutter": "24px",
+                    "2xl": "48px",
+                    "xl": "32px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "code": ["Geist Mono"],
+                    "headline-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "code": ["14px", {"lineHeight": "20px", "fontWeight": "450"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-md": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #f8f9ff;
+            color: #0b1c30;
+        }
+        .glass-header {
+            background: rgba(248, 249, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-background">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm h-16">
+<div class="flex justify-between items-center px-lg h-16 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-xl">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">APIHub</span>
+<div class="hidden md:flex gap-md">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Solutions</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Docs</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined p-base text-on-surface-variant hover:text-primary active:scale-95 transition-all">notifications</button>
+<button class="material-symbols-outlined p-base text-on-surface-variant hover:text-primary active:scale-95 transition-all">help_outline</button>
+<button class="bg-primary-container text-white px-md py-sm rounded-lg font-body-md active:scale-95 transition-transform">Create API</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a software developer with a clean, high-key studio background. The style is modern corporate, matching the light-mode aesthetic of the platform. The lighting is soft and flattering, highlighting a friendly and reliable professional appearance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSH-BG5dULPfsLZkz0tpYpAh4dc91U27PP7t3rjpfRmDej3jwNw1akyag__B3qUkFg-NK8CwxP0BegqYE1lllL783_Tf7V4g69RlE6pj7VxrSxMg2O7O88za8IU3Gz7nj0w6dhTSmMTjFYZgKiUs3PVh24Fk34ZQfxozM_eWXF2aiE7-W9LO01sor7R5CGa4nju95B4XCYYmmeRmrkPbhxwoffcRaYV0z5qUUSAbMHmEhTIP3PIukjWHwE8gW5VRI4kJgN2nzVzjTx"/>
+</div>
+</div>
+</div>
+</nav>
+<!-- Sidebar & Main Canvas Wrapper -->
+<div class="flex pt-16">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-surface-container-low/80 backdrop-blur-lg border-r border-outline-variant/20 py-md hidden md:flex flex-col gap-xs">
+<div class="px-md mb-md">
+<div class="flex items-center gap-sm mb-xs">
+<div class="w-6 h-6 bg-primary/10 rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">terminal</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary text-lg">Project Workspace</span>
+</div>
+<p class="text-on-surface-variant text-xs opacity-70 px-base">Production Environment</p>
+</div>
+<nav class="flex-1 flex flex-col gap-xs">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-primary-container/5 hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-sm text-body-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-primary-container/5 hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-body-sm text-body-sm">Explorer</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm bg-primary-container/10 text-primary border-l-4 border-primary rounded-r-lg translate-x-1" href="#">
+<span class="material-symbols-outlined">api</span>
+<span class="font-body-sm text-body-sm font-bold">My APIs</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-primary-container/5 hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-sm text-body-sm">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-md flex flex-col gap-xs border-t border-outline-variant/10 pt-md">
+<button class="bg-primary-container/10 text-primary py-sm rounded-lg font-body-sm mb-md hover:bg-primary-container/20 transition-colors">Upgrade Plan</button>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-primary-container/5 transition-all" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-body-sm text-body-sm">Documentation</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-error hover:bg-error/5 transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-sm text-body-sm">Log out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 p-lg bg-background min-h-[calc(100vh-64px)]">
+<div class="max-w-container-max mx-auto">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-2xl">
+<div>
+<div class="flex items-center gap-sm text-primary mb-xs">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest">Collections</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-background">Saved APIs</h1>
+<p class="text-on-surface-variant font-body-md">You have <span class="font-bold text-on-background">12</span> saved endpoints across 4 teams.</p>
+</div>
+</div>
+<!-- Filters & Search Toolbar -->
+<div class="flex flex-col md:flex-row gap-md mb-xl items-center bg-white p-sm rounded-xl border border-outline-variant/30 shadow-sm">
+<div class="relative flex-1 w-full">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-xl pr-md py-sm bg-transparent border-none focus:ring-0 text-body-md placeholder:text-on-surface-variant/50" placeholder="Search your favorites..." type="text"/>
+</div>
+<div class="h-6 w-px bg-outline-variant/30 hidden md:block"></div>
+<div class="flex items-center gap-md w-full md:w-auto px-md">
+<span class="text-body-sm text-on-surface-variant whitespace-nowrap">Sort by:</span>
+<select class="bg-transparent border-none text-body-sm font-bold text-primary focus:ring-0 cursor-pointer py-sm pr-lg">
+<option>Recently Added</option>
+<option>Name (A-Z)</option>
+<option>Usage Frequency</option>
+<option>Stability Score</option>
+</select>
+</div>
+</div>
+<!-- API Cards Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="group bg-white rounded-xl border border-outline-variant/30 p-lg hover:shadow-lg hover:border-primary/30 transition-all duration-300 relative overflow-hidden">
+<button class="absolute top-md right-md p-sm text-on-surface-variant hover:text-error transition-colors bg-surface-container-low rounded-full group-hover:scale-110">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">heart_minus</span>
+</button>
+<div class="flex items-start gap-md mb-lg">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center p-sm">
+<img class="w-full h-full object-contain opacity-80" data-alt="A minimalist tech logo for a weather data API. The logo features a clean, stylized sun and cloud icon using a monochromatic indigo palette. The aesthetic is sharp, professional, and fits a high-performance SaaS developer environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNSGVrgftxo_OmAJ3lf-2gK6Vzt_-JRwLhRgb4m2EFT1lP4bItCqozyanXr61lCVrI2IT8RtbrOuWtyxufqF1nR_rJmv6ydAkQ3oKyDRs5pc1Skd4BBSh2V2NEYEi0m2PsxaxQ4i7hluB7bp7p2d4vfVsXoiLzP8X9-UWuVFuO1Na_9gv17mHRIOT_G6FZYJa_Z9F3CzGXnTnnDqk7ZNFVMPlYF5v1vAqsBKdQw2JIRYPUXeQcjUlnNhonGK5E6JReymQ-3-ERDiEL"/>
+</div>
+<div>
+<h3 class="font-headline-sm text-lg text-on-background group-hover:text-primary transition-colors">Global Weather V4</h3>
+<span class="bg-tertiary/10 text-tertiary px-sm py-xs rounded-full text-[10px] font-bold uppercase tracking-wider">Meteorology</span>
+</div>
+</div>
+<p class="text-body-sm text-on-surface-variant mb-xl line-clamp-2">Real-time atmospheric data with 99.9% uptime and hyper-local granularity across 200 countries.</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex gap-md items-center">
+<div class="flex items-center gap-xs">
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+<span class="text-[12px] text-on-surface-variant">99ms</span>
+</div>
+</div>
+<button class="flex items-center gap-sm bg-primary-container text-on-primary text-body-sm px-md py-sm rounded-lg hover:shadow-md active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm">play_circle</span>
+<span>Quick Test</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group bg-white rounded-xl border border-outline-variant/30 p-lg hover:shadow-lg hover:border-primary/30 transition-all duration-300 relative overflow-hidden">
+<button class="absolute top-md right-md p-sm text-on-surface-variant hover:text-error transition-colors bg-surface-container-low rounded-full group-hover:scale-110">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">heart_minus</span>
+</button>
+<div class="flex items-start gap-md mb-lg">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center p-sm">
+<img class="w-full h-full object-contain opacity-80" data-alt="A sleek corporate logo for a financial payments API. The design uses interlocking geometric circles to symbolize secure transactions, rendered in a professional deep blue and indigo theme. The image is clean, sharp, and fits within a minimalist grid layout." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMkZ7wx7pESkaGCAKO63mLYhRZsjKMGVfQtBifa7yiZu3sVG9fLGEAqrx4qun6oKe7VHj5cbh5b6wwQ0Vlosylgmc-o-RDBHCF-uzlQda1PDyGMprGCAJEZywLM3BI6KxkLZMaS7lWT6Jhrh7Id5RmBBmX3mzXgT5pm4z9usBUYz2owLh47Kng97a4ctMKn2NrF1VSzHuQuhBPIfUg5BJgvEuNGMiN_LrewEhELow1lwxkvcJGFq83pgiA8vow7xenakuso3k1PtCd"/>
+</div>
+<div>
+<h3 class="font-headline-sm text-lg text-on-background group-hover:text-primary transition-colors">PayGate Connect</h3>
+<span class="bg-primary/10 text-primary px-sm py-xs rounded-full text-[10px] font-bold uppercase tracking-wider">Fintech</span>
+</div>
+</div>
+<p class="text-body-sm text-on-surface-variant mb-xl line-clamp-2">Enterprise-grade payment gateway integration supporting 150+ currencies and instant settlement.</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex gap-md items-center">
+<div class="flex items-center gap-xs">
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+<span class="text-[12px] text-on-surface-variant">142ms</span>
+</div>
+</div>
+<button class="flex items-center gap-sm bg-primary-container text-on-primary text-body-sm px-md py-sm rounded-lg hover:shadow-md active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm">play_circle</span>
+<span>Quick Test</span>
+</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group bg-white rounded-xl border border-outline-variant/30 p-lg hover:shadow-lg hover:border-primary/30 transition-all duration-300 relative overflow-hidden">
+<button class="absolute top-md right-md p-sm text-on-surface-variant hover:text-error transition-colors bg-surface-container-low rounded-full group-hover:scale-110">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">heart_minus</span>
+</button>
+<div class="flex items-start gap-md mb-lg">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center p-sm">
+<img class="w-full h-full object-contain opacity-80" data-alt="A modern AI-themed logo for a natural language processing API. It depicts a simplified neural network node structure with clean lines and a vibrant indigo-to-teal gradient. The style is cutting-edge and professional, set against a pristine light-mode background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV3c6T1R6qkYvCL12J7Ml4BS1PaKgXwnhKUHXc01KybATJQvc1QBZvoR1FAoohp2fCOy_btXppKjgR8O439u_VaYFKvyKhGW1LCovtAGvkxbARVosX-W_RgkRu1MmY1JLafHTdHcmjVWTlkG5-jwyytOEd5YF_V6lfHRJrPHduZaX_LhjBtNOUpqbBeJWhwHwymXz078N67ROUu1-5xKKJQkwt_Lzf04EjXpDycv5nZAhl9t_CLRK7CDYRgrWnlZZDLdGQv-C_JJwk"/>
+</div>
+<div>
+<h3 class="font-headline-sm text-lg text-on-background group-hover:text-primary transition-colors">NLP Insight Pro</h3>
+<span class="bg-tertiary/10 text-tertiary px-sm py-xs rounded-full text-[10px] font-bold uppercase tracking-wider">AI / ML</span>
+</div>
+</div>
+<p class="text-body-sm text-on-surface-variant mb-xl line-clamp-2">Advanced sentiment analysis and entity extraction powered by transformer-based neural networks.</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex gap-md items-center">
+<div class="flex items-center gap-xs">
+<div class="w-2 h-2 rounded-full bg-amber-500"></div>
+<span class="text-[12px] text-on-surface-variant">450ms</span>
+</div>
+</div>
+<button class="flex items-center gap-sm bg-primary-container text-on-primary text-body-sm px-md py-sm rounded-lg hover:shadow-md active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm">play_circle</span>
+<span>Quick Test</span>
+</button>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group bg-white rounded-xl border border-outline-variant/30 p-lg hover:shadow-lg hover:border-primary/30 transition-all duration-300 relative overflow-hidden">
+<button class="absolute top-md right-md p-sm text-on-surface-variant hover:text-error transition-colors bg-surface-container-low rounded-full group-hover:scale-110">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">heart_minus</span>
+</button>
+<div class="flex items-start gap-md mb-lg">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center p-sm">
+<img class="w-full h-full object-contain opacity-80" data-alt="A crisp logistics logo for a global shipping and tracking API. The icon uses a stylized arrow and box motif in a professional indigo and slate color scheme. The visual design is authoritative and reliable, intended for a technical SaaS interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6XkzPs0LwPh9Z0jD5KrKWa9xLGMbdSJ1Um3MnIsXJvwLNKfhPt-e7JcGmj5SGRztYyH0R1vKfZPQemB_yyTyXv8Oo_VGx_9uZeZWS4KDFSTAP6t2oCCB0ixwl-XQ7n7NsNb8cRvrSlALplIkezL6nL-T2zH_ZSRCW79Izw_aNc9PZhLzYIlW2EcuZ1aj82wcocCVPotgc17aD_0H7_c9KSzOGxVFGO-93qZCX7Yrl_Z2DWqR_OgJk3m2oJSahKKBwb0PDp7Xt3Ii7"/>
+</div>
+<div>
+<h3 class="font-headline-sm text-lg text-on-background group-hover:text-primary transition-colors">ShipTrack Global</h3>
+<span class="bg-secondary/10 text-secondary px-sm py-xs rounded-full text-[10px] font-bold uppercase tracking-wider">Logistics</span>
+</div>
+</div>
+<p class="text-body-sm text-on-surface-variant mb-xl line-clamp-2">Universal shipment tracking supporting 800+ carriers with webhook notifications and ETA predictions.</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex gap-md items-center">
+<div class="flex items-center gap-xs">
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+<span class="text-[12px] text-on-surface-variant">88ms</span>
+</div>
+</div>
+<button class="flex items-center gap-sm bg-primary-container text-on-primary text-body-sm px-md py-sm rounded-lg hover:shadow-md active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm">play_circle</span>
+<span>Quick Test</span>
+</button>
+</div>
+</div>
+<!-- Add New Favorite Placeholder -->
+<div class="group border-2 border-dashed border-outline-variant/40 rounded-xl p-lg flex flex-col items-center justify-center text-center hover:bg-surface-container-low hover:border-primary/50 transition-all duration-300 cursor-pointer">
+<div class="w-14 h-14 bg-primary/5 rounded-full flex items-center justify-center mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">add_circle</span>
+</div>
+<h3 class="font-body-lg font-bold text-on-background">Explore More APIs</h3>
+<p class="text-body-sm text-on-surface-variant mt-xs">Browse the directory to add more favorites to your workspace.</p>
+</div>
+</div>
+<!-- Pagination/Load More (Subtle) -->
+<div class="mt-2xl flex justify-center">
+<button class="px-xl py-md border border-outline-variant text-on-surface-variant font-bold rounded-xl hover:bg-white hover:border-primary hover:text-primary transition-all">
+                        Load More Favorites
+                    </button>
+</div>
+</div>
+</main>
+</div>
+<!-- Micro-interaction Scripts -->
+<script>
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+
+        // Search Bar Focus Effect
+        const searchInput = document.querySelector('input[type="text"]');
+        const searchContainer = searchInput.parentElement.parentElement;
+        searchInput.addEventListener('focus', () => {
+            searchContainer.classList.add('ring-2', 'ring-primary/20', 'border-primary/50');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchContainer.classList.remove('ring-2', 'ring-primary/20', 'border-primary/50');
+        });
+    </script>
+</body></html>

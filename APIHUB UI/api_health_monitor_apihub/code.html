@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>APIHub | Health Monitor</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Inter & Geist Mono -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist+Mono:wght@400;450&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "primary-fixed-dim": "#c3c0ff",
+                "outline-variant": "#c7c4d8",
+                "on-tertiary-container": "#67f4b7",
+                "error": "#ba1a1a",
+                "surface": "#f8f9ff",
+                "surface-container-lowest": "#ffffff",
+                "on-primary-container": "#dad7ff",
+                "tertiary-container": "#006e4b",
+                "secondary": "#565e74",
+                "primary-container": "#4f46e5",
+                "on-secondary-container": "#5c647a",
+                "on-primary-fixed-variant": "#3323cc",
+                "on-error-container": "#93000a",
+                "secondary-container": "#dae2fd",
+                "outline": "#777587",
+                "on-secondary": "#ffffff",
+                "inverse-surface": "#213145",
+                "on-surface-variant": "#464555",
+                "on-tertiary-fixed": "#002113",
+                "surface-dim": "#cbdbf5",
+                "on-tertiary-fixed-variant": "#005236",
+                "tertiary-fixed": "#6ffbbe",
+                "on-background": "#0b1c30",
+                "surface-variant": "#d3e4fe",
+                "on-primary-fixed": "#0f0069",
+                "inverse-on-surface": "#eaf1ff",
+                "error-container": "#ffdad6",
+                "surface-container": "#e5eeff",
+                "primary-fixed": "#e2dfff",
+                "surface-container-highest": "#d3e4fe",
+                "tertiary-fixed-dim": "#4edea3",
+                "surface-container-high": "#dce9ff",
+                "surface-tint": "#4d44e3",
+                "tertiary": "#005338",
+                "surface-container-low": "#eff4ff",
+                "inverse-primary": "#c3c0ff",
+                "on-tertiary": "#ffffff",
+                "on-surface": "#0b1c30",
+                "surface-bright": "#f8f9ff",
+                "on-secondary-fixed-variant": "#3f465c",
+                "secondary-fixed-dim": "#bec6e0",
+                "background": "#f8f9ff",
+                "secondary-fixed": "#dae2fd",
+                "primary": "#3525cd",
+                "on-error": "#ffffff",
+                "on-primary": "#ffffff",
+                "on-secondary-fixed": "#131b2e"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "container-max": "1280px",
+                "gutter": "24px",
+                "xs": "4px",
+                "sm": "8px",
+                "xl": "32px",
+                "2xl": "48px",
+                "3xl": "64px",
+                "md": "16px",
+                "base": "4px",
+                "lg": "24px"
+            },
+            "fontFamily": {
+                "headline-sm": ["Inter"],
+                "body-sm": ["Inter"],
+                "body-lg": ["Inter"],
+                "headline-lg": ["Inter"],
+                "headline-md": ["Inter"],
+                "body-md": ["Inter"],
+                "label-caps": ["Inter"],
+                "code": ["Geist Mono"],
+                "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-md": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "code": ["14px", {"lineHeight": "20px", "fontWeight": "450"}],
+                "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .sparkline-container svg {
+            filter: drop-shadow(0 2px 4px rgba(79, 70, 229, 0.1));
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c7c4d8;
+            border-radius: 10px;
+        }
+        .monitor-card:hover {
+            border-color: #4f46e5;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm h-16">
+<div class="flex justify-between items-center px-lg h-full w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-xl">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">APIHub</span>
+<nav class="hidden md:flex items-center gap-lg font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Solutions</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Docs</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden lg:flex items-center bg-surface-container-low px-sm py-xs rounded-lg border border-outline-variant/30">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm w-48" placeholder="Search resources..." type="text"/>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-sm text-on-surface-variant hover:text-primary transition-transform active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-sm text-on-surface-variant hover:text-primary transition-transform active:scale-95">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden border border-outline-variant/50">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a technology executive, high-key lighting, soft shadows, sharp focus on eyes, minimalist grey background. The subject has a confident expression, conveying reliability and expertise in the SaaS sector. Professional photography style with high detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJlfH5h-1PtF8XM7szGEqqBUQ72FkeWMxjsbWCfT3_DrteZXrFFOutRZyEPnRFpg52JLtBax8TvDtM6w8ft_ati8KzJvHS8GiMumt4kcOZXwawMN37FYc6UBc2ntK7aD-HHboSH80-rJDZzquZeXdH3ff-k3YKcYVFUKAdbirh9qT2AW181SfAHM_Q4f_STLek8BDnnW7tW7t6Cal6QaVLEG8QV21N0doUU3FQT5NjSfxYX-nqCWnTurKYNic5jmhhv38cOmLpFUSg"/>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container px-md py-xs rounded-lg font-bold transition-transform active:scale-95">
+                    Create API
+                </button>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-surface-container-low/80 backdrop-blur-lg border-r border-outline-variant/20 flex flex-col py-md gap-xs">
+<div class="px-md mb-md">
+<div class="flex items-center gap-sm p-sm rounded-lg bg-surface-variant/20">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">api</span>
+</div>
+<div>
+<p class="font-bold text-body-sm text-primary">Project Workspace</p>
+<p class="text-[10px] uppercase tracking-wider text-outline">Production Environment</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-sm space-y-1">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant/50 transition-all hover:translate-x-1 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-sm text-body-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant/50 transition-all hover:translate-x-1 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-body-sm text-body-sm">Explorer</span>
+</a>
+<!-- Active Tab: Health/My APIs -->
+<a class="flex items-center gap-md px-md py-sm bg-primary-container/10 text-primary border-l-4 border-primary rounded-r-lg transition-all translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">api</span>
+<span class="font-body-sm text-body-sm">My APIs</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant/50 transition-all hover:translate-x-1 duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-sm text-body-sm">Settings</span>
+</a>
+</nav>
+<div class="px-md mt-auto">
+<div class="p-md rounded-xl bg-primary-container text-white mb-lg shadow-lg relative overflow-hidden">
+<div class="relative z-10">
+<p class="font-bold text-body-sm mb-xs">Pro Plan Active</p>
+<p class="text-[11px] opacity-80 mb-sm">Upgrade for enterprise SLAs and advanced monitoring.</p>
+<button class="w-full bg-white text-primary font-bold py-xs rounded text-[12px] hover:bg-surface-bright transition-colors">Upgrade Plan</button>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[80px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+</div>
+<div class="space-y-1">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-body-sm text-body-sm">Documentation</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-error hover:bg-error-container/20 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-sm text-body-sm">Log out</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-16 min-h-screen">
+<div class="max-w-container-max mx-auto p-lg lg:p-2xl">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-2xl gap-md">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface mb-xs">API Health Monitor</h1>
+<p class="text-on-surface-variant text-body-md">Real-time status and latency metrics for your service mesh.</p>
+</div>
+<div class="flex gap-sm">
+<div class="flex items-center gap-sm bg-surface-container-high/50 border border-outline-variant/30 px-md py-sm rounded-xl">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim animate-pulse"></span>
+<span class="text-body-sm font-bold text-on-surface-variant">Live Monitoring</span>
+</div>
+<button class="flex items-center gap-sm bg-white border border-outline-variant px-md py-sm rounded-xl font-bold text-body-sm hover:border-primary hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                        Last 24 Hours
+                    </button>
+</div>
+</div>
+<!-- Metric Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-2xl">
+<div class="bg-white p-lg rounded-[16px] border border-outline-variant/40 shadow-sm">
+<div class="flex items-center justify-between mb-md">
+<span class="text-on-surface-variant font-label-caps uppercase">Average Uptime</span>
+<span class="material-symbols-outlined text-tertiary-fixed-dim">verified_user</span>
+</div>
+<div class="flex items-baseline gap-sm">
+<span class="text-headline-sm font-bold text-on-surface">99.99%</span>
+<span class="text-tertiary-fixed-dim font-bold text-body-sm">+0.01%</span>
+</div>
+<div class="mt-md h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-fixed-dim w-[99%]"></div>
+</div>
+</div>
+<div class="bg-white p-lg rounded-[16px] border border-outline-variant/40 shadow-sm">
+<div class="flex items-center justify-between mb-md">
+<span class="text-on-surface-variant font-label-caps uppercase">Avg Response Time</span>
+<span class="material-symbols-outlined text-primary">speed</span>
+</div>
+<div class="flex items-baseline gap-sm">
+<span class="text-headline-sm font-bold text-on-surface">240ms</span>
+<span class="text-error font-bold text-body-sm">+12ms</span>
+</div>
+<div class="mt-md h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[75%]"></div>
+</div>
+</div>
+<div class="bg-white p-lg rounded-[16px] border border-outline-variant/40 shadow-sm">
+<div class="flex items-center justify-between mb-md">
+<span class="text-on-surface-variant font-label-caps uppercase">Overall Success Rate</span>
+<span class="material-symbols-outlined text-on-primary-fixed-variant">task_alt</span>
+</div>
+<div class="flex items-baseline gap-sm">
+<span class="text-headline-sm font-bold text-on-surface">98.5%</span>
+<span class="text-tertiary-fixed-dim font-bold text-body-sm">-0.2%</span>
+</div>
+<div class="mt-md h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-on-primary-fixed-variant w-[98.5%]"></div>
+</div>
+</div>
+</div>
+<!-- List Search & Filters -->
+<div class="bg-white border border-outline-variant/40 rounded-[16px] overflow-hidden shadow-sm">
+<div class="p-md border-b border-outline-variant/30 flex flex-col md:flex-row gap-md justify-between items-center bg-surface-container-low/30">
+<div class="relative w-full md:w-96">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-xl pr-md py-sm bg-white border border-outline-variant/50 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-body-sm transition-all" placeholder="Filter APIs by name or tag..." type="text"/>
+</div>
+<div class="flex items-center gap-sm overflow-x-auto w-full md:w-auto">
+<span class="text-body-sm text-on-surface-variant font-bold whitespace-nowrap">Filter:</span>
+<button class="px-md py-xs bg-primary-container text-white rounded-full text-body-sm font-bold">All</button>
+<button class="px-md py-xs bg-surface-container-high text-on-surface-variant rounded-full text-body-sm font-bold hover:bg-surface-variant transition-colors">Critical</button>
+<button class="px-md py-xs bg-surface-container-high text-on-surface-variant rounded-full text-body-sm font-bold hover:bg-surface-variant transition-colors">External</button>
+<button class="px-md py-xs bg-surface-container-high text-on-surface-variant rounded-full text-body-sm font-bold hover:bg-surface-variant transition-colors">Internal</button>
+</div>
+</div>
+<!-- API List Table-ish Grid -->
+<div class="divide-y divide-outline-variant/20">
+<!-- API Item 1 -->
+<div class="monitor-card grid grid-cols-12 gap-lg p-lg items-center transition-all cursor-pointer">
+<div class="col-span-4 flex items-center gap-md">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface">Payment Gateway v2</h3>
+<div class="flex items-center gap-sm mt-xs">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+<span class="text-[12px] text-on-surface-variant">Operational</span>
+</div>
+</div>
+</div>
+<div class="col-span-3">
+<div class="sparkline-container h-10 w-full">
+<svg class="w-full h-full" viewbox="0 0 100 30">
+<path d="M0,25 Q10,15 20,20 T40,10 T60,18 T80,5 T100,12" fill="none" stroke="#4f46e5" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+</svg>
+</div>
+</div>
+<div class="col-span-2 text-center">
+<p class="text-[11px] text-on-surface-variant font-label-caps uppercase mb-xs">Success Rate</p>
+<p class="font-bold text-body-md">99.8%</p>
+</div>
+<div class="col-span-2 text-center">
+<p class="text-[11px] text-on-surface-variant font-label-caps uppercase mb-xs">p99 Latency</p>
+<p class="font-bold text-body-md">185ms</p>
+</div>
+<div class="col-span-1 flex justify-end">
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+<!-- API Item 2 -->
+<div class="monitor-card grid grid-cols-12 gap-lg p-lg items-center transition-all cursor-pointer">
+<div class="col-span-4 flex items-center gap-md">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">person_search</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface">User Discovery API</h3>
+<div class="flex items-center gap-sm mt-xs">
+<span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+<span class="text-[12px] text-on-surface-variant">Elevated Latency</span>
+</div>
+</div>
+</div>
+<div class="col-span-3">
+<div class="sparkline-container h-10 w-full">
+<svg class="w-full h-full" viewbox="0 0 100 30">
+<path d="M0,15 Q20,15 40,25 T60,28 T80,22 T100,29" fill="none" stroke="#f59e0b" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+</svg>
+</div>
+</div>
+<div class="col-span-2 text-center">
+<p class="text-[11px] text-on-surface-variant font-label-caps uppercase mb-xs">Success Rate</p>
+<p class="font-bold text-body-md">94.2%</p>
+</div>
+<div class="col-span-2 text-center">
+<p class="text-[11px] text-on-surface-variant font-label-caps uppercase mb-xs">p99 Latency</p>
+<p class="font-bold text-body-md">1.2s</p>
+</div>
+<div class="col-span-1 flex justify-end">
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+<!-- API Item 3 -->
+<div class="monitor-card grid grid-cols-12 gap-lg p-lg items-center transition-all cursor-pointer">
+<div class="col-span-4 flex items-center gap-md">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">cloud_sync</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface">Cloud Storage Sync</h3>
+<div class="flex items-center gap-sm mt-xs">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+<span class="text-[12px] text-on-surface-variant">Operational</span>
+</div>
+</div>
+</div>
+<div class="col-span-3">
+<div class="sparkline-container h-10 w-full">
+<svg class="w-full h-full" viewbox="0 0 100 30">
+<path d="M0,10 Q15,8 30,12 T50,11 T75,9 T100,10" fill="none" stroke="#4f46e5" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+</svg>
+</div>
+</div>
+<div class="col-span-2 text-center">
+<p class="text-[11px] text-on-surface-variant font-label-caps uppercase mb-xs">Success Rate</p>
+<p class="font-bold text-body-md">99.9%</p>
+</div>
+<div class="col-span-2 text-center">
+<p class="text-[11px] text-on-surface-variant font-label-caps uppercase mb-xs">p99 Latency</p>
+<p class="font-bold text-body-md">45ms</p>
+</div>
+<div class="col-span-1 flex justify-end">
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+<!-- API Item 4 (Critical) -->
+<div class="monitor-card grid grid-cols-12 gap-lg p-lg items-center transition-all cursor-pointer bg-error-container/5">
+<div class="col-span-4 flex items-center gap-md">
+<div class="w-10 h-10 rounded-xl bg-error-container/20 flex items-center justify-center text-error">
+<span class="material-symbols-outlined">database</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface">Analytics Postgres Bridge</h3>
+<div class="flex items-center gap-sm mt-xs">
+<span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+<span class="text-[12px] text-error font-bold">Down</span>
+</div>
+</div>
+</div>
+<div class="col-span-3">
+<div class="sparkline-container h-10 w-full">
+<svg class="w-full h-full" viewbox="0 0 100 30">
+<path d="M0,10 L30,10 L35,28 L40,10 L70,10 L75,28 L80,10 L100,10" fill="none" stroke="#ba1a1a" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+</svg>
+</div>
+</div>
+<div class="col-span-2 text-center">
+<p class="text-[11px] text-on-surface-variant font-label-caps uppercase mb-xs">Success Rate</p>
+<p class="font-bold text-error">0.0%</p>
+</div>
+<div class="col-span-2 text-center">
+<p class="text-[11px] text-on-surface-variant font-label-caps uppercase mb-xs">p99 Latency</p>
+<p class="font-bold text-error">N/A</p>
+</div>
+<div class="col-span-1 flex justify-end">
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Footer List Control -->
+<div class="p-md bg-surface-container-lowest flex justify-between items-center">
+<p class="text-body-sm text-on-surface-variant">Showing 4 of 24 monitored APIs</p>
+<div class="flex items-center gap-sm">
+<button class="p-xs rounded border border-outline-variant hover:bg-surface-variant/20 transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-xs rounded border border-outline-variant hover:bg-surface-variant/20 transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Terminal-style Debug Log (Asymmetric Element) -->
+<div class="mt-2xl">
+<div class="flex items-center justify-between mb-md px-sm">
+<h2 class="font-bold text-on-surface">Recent System Anomalies</h2>
+<button class="text-primary font-bold text-body-sm hover:underline">Download CSV</button>
+</div>
+<div class="bg-[#0F172A] rounded-xl overflow-hidden shadow-2xl">
+<div class="flex items-center gap-sm p-sm bg-[#1E293B] border-b border-white/5">
+<div class="flex gap-xs">
+<div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
+<div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+<div class="w-3 h-3 rounded-full bg-[#27C93F]"></div>
+</div>
+<span class="text-[11px] text-slate-400 font-code ml-md uppercase tracking-widest">system-events.log</span>
+</div>
+<div class="p-lg font-code text-code space-y-md">
+<div class="flex gap-md">
+<span class="text-slate-500 whitespace-nowrap">2023-11-20 14:23:01</span>
+<span class="text-error font-bold whitespace-nowrap">[FAIL]</span>
+<span class="text-slate-300">Analytics Postgres Bridge: Connection timeout at cluster-node-04 (AWS-East)</span>
+</div>
+<div class="flex gap-md">
+<span class="text-slate-500 whitespace-nowrap">2023-11-20 14:22:55</span>
+<span class="text-yellow-400 font-bold whitespace-nowrap">[WARN]</span>
+<span class="text-slate-300">User Discovery API: Latency spikes detected in us-west-2 (99th percentile &gt; 1.2s)</span>
+</div>
+<div class="flex gap-md">
+<span class="text-slate-500 whitespace-nowrap">2023-11-20 14:15:20</span>
+<span class="text-tertiary-fixed-dim font-bold whitespace-nowrap">[OK]</span>
+<span class="text-slate-300">Payment Gateway v2: Automated failover to backup database successful.</span>
+</div>
+<div class="flex gap-md">
+<span class="text-slate-500 whitespace-nowrap">2023-11-20 14:10:12</span>
+<span class="text-slate-400 font-bold whitespace-nowrap">[INFO]</span>
+<span class="text-slate-300">System health check completed. 23 services operational. 1 service offline.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Micro-interaction Scripts -->
+<script>
+        document.querySelectorAll('.monitor-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const svg = card.querySelector('svg path');
+                if(svg) {
+                    svg.style.transition = 'stroke-width 0.3s ease';
+                    svg.style.strokeWidth = '3';
+                }
+            });
+            card.addEventListener('mouseleave', () => {
+                const svg = card.querySelector('svg path');
+                if(svg) {
+                    svg.style.strokeWidth = '2';
+                }
+            });
+        });
+
+        // Simple search highlight simulation
+        const searchInput = document.querySelector('input[placeholder*="Filter APIs"]');
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            document.querySelectorAll('.monitor-card').forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if(text.includes(term)) {
+                    card.style.display = 'grid';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body></html>

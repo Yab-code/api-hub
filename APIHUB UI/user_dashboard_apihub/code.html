@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>APIHub | Developer Dashboard</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter & Geist Mono -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#dae2fd",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#f8f9ff",
+                    "outline": "#777587",
+                    "on-surface": "#0b1c30",
+                    "on-background": "#0b1c30",
+                    "primary-container": "#4f46e5",
+                    "tertiary-container": "#006e4b",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "secondary": "#565e74",
+                    "on-tertiary-container": "#67f4b7",
+                    "tertiary-fixed": "#6ffbbe",
+                    "inverse-on-surface": "#eaf1ff",
+                    "inverse-surface": "#213145",
+                    "surface-container": "#e5eeff",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#3525cd",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "surface-tint": "#4d44e3",
+                    "on-surface-variant": "#464555",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#cbdbf5",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "error": "#ba1a1a",
+                    "background": "#f8f9ff",
+                    "surface-variant": "#d3e4fe",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#c3c0ff",
+                    "on-tertiary-fixed": "#002113",
+                    "surface": "#f8f9ff",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-secondary-fixed": "#131b2e",
+                    "on-primary-fixed": "#0f0069",
+                    "primary-fixed": "#e2dfff",
+                    "on-primary-container": "#dad7ff",
+                    "surface-container-low": "#eff4ff",
+                    "surface-container-high": "#dce9ff",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "secondary-container": "#dae2fd",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#5c647a",
+                    "tertiary": "#005338",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#c7c4d8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "3xl": "64px",
+                    "lg": "24px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "xl": "32px",
+                    "2xl": "48px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "code": ["Geist Mono"],
+                    "body-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "code": ["14px", {"lineHeight": "20px", "fontWeight": "450"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for glassmorphism */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(79, 70, 229, 0.1);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopNavBar (Fixed) -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm h-16">
+<div class="flex justify-between items-center px-lg h-full w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-xl">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">APIHub</span>
+<nav class="hidden md:flex gap-md h-full items-center">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors h-full flex items-center px-sm" href="#">Solutions</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors h-full flex items-center px-sm" href="#">Docs</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors h-full flex items-center px-sm" href="#">Pricing</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors h-full flex items-center px-sm" href="#">Support</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden sm:flex items-center bg-surface-container-low px-sm py-xs rounded-lg border border-outline-variant/20">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm w-48 py-0" placeholder="Search APIs..." type="text"/>
+</div>
+<div class="flex gap-sm">
+<button class="material-symbols-outlined p-sm rounded-full hover:bg-surface-variant text-on-surface-variant transition-colors">notifications</button>
+<button class="material-symbols-outlined p-sm rounded-full hover:bg-surface-variant text-on-surface-variant transition-colors">help_outline</button>
+</div>
+<button class="bg-primary-container text-white px-md py-sm rounded-lg font-body-sm font-bold active:scale-95 transition-transform">Create API</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a professional female developer smiling, shot in soft studio lighting with a clean, light-colored professional background. High-quality photography, sharp focus, vibrant natural skin tones, and a friendly, confident expression suitable for a SaaS user avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3gok_o0DtLEC3m0jbNL_quGIbn6A-HacR4g9oxWeILFiwglfhBUr4vNTbxkIBdI0NpDARa3PU3xJmKKr4Al6rm_3jkKqpmEhgbOkb1N3x00s6DKL2X5DhSTUD6gkWzbL8aVS8eLGgUGJufK6kjV1aXlfuXCkSlTxEYSvEz8TvJ_8kpkv4Zl8E6lq2Vwvo2fKpRcl9-bVs78_JtqjKubxECUmy06wizaq_kdDZY8UCpnp1NECGq3o1-I3phOYxRCPbEmneSiNetsL5"/>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar (Fixed) -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-surface-container-low/80 backdrop-blur-lg border-r border-outline-variant/20 flex flex-col py-md gap-xs hidden md:flex">
+<div class="px-md mb-lg">
+<div class="flex items-center gap-sm p-sm bg-primary-container/5 rounded-xl border border-primary/10">
+<div class="w-10 h-10 bg-primary-container text-white flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined">api</span>
+</div>
+<div>
+<p class="font-body-sm font-bold text-on-surface">Project Workspace</p>
+<p class="text-[11px] text-on-surface-variant opacity-70">Production Environment</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-sm space-y-1">
+<a class="flex items-center gap-md px-md py-sm bg-primary-container/10 text-primary border-l-4 border-primary rounded-r-lg font-body-sm font-bold" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant/50 transition-all duration-200 hover:translate-x-1 rounded-lg font-body-sm" href="#">
+<span class="material-symbols-outlined">explore</span>
+                Explorer
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant/50 transition-all duration-200 hover:translate-x-1 rounded-lg font-body-sm" href="#">
+<span class="material-symbols-outlined">api</span>
+                My APIs
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant/50 transition-all duration-200 hover:translate-x-1 rounded-lg font-body-sm" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="px-md py-md mt-auto border-t border-outline-variant/10">
+<button class="w-full bg-secondary-container text-on-secondary-container font-body-sm font-bold py-sm rounded-xl mb-md hover:bg-secondary-container/80 transition-colors">
+                Upgrade Plan
+            </button>
+<nav class="space-y-1">
+<a class="flex items-center gap-md px-md py-xs text-on-surface-variant hover:text-primary font-body-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">description</span>
+                    Documentation
+                </a>
+<a class="flex items-center gap-md px-md py-xs text-on-surface-variant hover:text-error font-body-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+                    Log out
+                </a>
+</nav>
+</div>
+</aside>
+<!-- Main Content Stage -->
+<main class="md:pl-64 pt-16 min-h-screen">
+<div class="max-w-container-max mx-auto px-lg py-xl">
+<!-- Welcome Section -->
+<section class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-2xl">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface">Welcome back, Jane!</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Here's what happened with your APIs in the last 24 hours.</p>
+</div>
+<div class="flex gap-sm h-fit">
+<button class="bg-surface border border-outline-variant/30 text-on-surface-variant px-md py-sm rounded-xl font-body-sm hover:border-primary transition-colors flex items-center gap-sm">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+                        Last 30 Days
+                    </button>
+<button class="bg-primary text-white px-md py-sm rounded-xl font-body-sm hover:bg-primary/90 transition-shadow shadow-sm shadow-primary/20 flex items-center gap-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                        New Project
+                    </button>
+</div>
+</section>
+<!-- Grid Layout -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Stats Cards -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant/30 p-lg rounded-xl shadow-sm hover:border-primary/40 transition-colors group">
+<div class="flex items-center justify-between mb-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Total Requests</span>
+<div class="p-xs bg-primary-container/10 text-primary rounded-lg group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+</div>
+</div>
+<div class="flex items-end gap-sm">
+<span class="font-headline-sm text-headline-sm">1.2M</span>
+<span class="text-tertiary font-body-sm mb-base flex items-center">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+                                12%
+                            </span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 p-lg rounded-xl shadow-sm hover:border-primary/40 transition-colors group">
+<div class="flex items-center justify-between mb-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Avg Latency</span>
+<div class="p-xs bg-primary-container/10 text-primary rounded-lg group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">speed</span>
+</div>
+</div>
+<div class="flex items-end gap-sm">
+<span class="font-headline-sm text-headline-sm">42ms</span>
+<span class="text-tertiary font-body-sm mb-base flex items-center">
+<span class="material-symbols-outlined text-[16px]">arrow_downward</span>
+                                4ms
+                            </span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 p-lg rounded-xl shadow-sm hover:border-primary/40 transition-colors group">
+<div class="flex items-center justify-between mb-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Active Keys</span>
+<div class="p-xs bg-primary-container/10 text-primary rounded-lg group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">key</span>
+</div>
+</div>
+<div class="flex items-end gap-sm">
+<span class="font-headline-sm text-headline-sm">18</span>
+<span class="text-on-surface-variant font-body-sm mb-base">Production</span>
+</div>
+</div>
+</div>
+<!-- Usage Summary Chart (Large Card) -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest border border-outline-variant/30 p-lg rounded-xl shadow-sm flex flex-col">
+<div class="flex justify-between items-center mb-xl">
+<div>
+<h3 class="font-body-lg font-bold text-on-surface">API Usage Summary</h3>
+<p class="font-body-sm text-on-surface-variant">Total requests over the last 30 days</p>
+</div>
+<div class="flex gap-base">
+<span class="w-3 h-3 bg-primary rounded-full"></span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Production Traffic</span>
+</div>
+</div>
+<div class="flex-1 relative min-h-[300px] flex items-end gap-xs px-sm">
+<!-- Mock Chart bars/visuals -->
+<div class="flex-1 bg-primary/5 hover:bg-primary/20 transition-colors h-[40%] rounded-t-sm relative group">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] px-sm py-xs rounded hidden group-hover:block">12k</div>
+</div>
+<div class="flex-1 bg-primary/5 hover:bg-primary/20 transition-colors h-[55%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary/5 hover:bg-primary/20 transition-colors h-[45%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary/5 hover:bg-primary/20 transition-colors h-[65%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary/5 hover:bg-primary/20 transition-colors h-[80%] rounded-t-sm relative group">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] px-sm py-xs rounded hidden group-hover:block">45k</div>
+</div>
+<div class="flex-1 bg-primary/10 hover:bg-primary/20 transition-colors h-[75%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary/10 hover:bg-primary/20 transition-colors h-[60%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary/20 hover:bg-primary/30 transition-colors h-[90%] rounded-t-sm border-t-2 border-primary"></div>
+<div class="flex-1 bg-primary/20 hover:bg-primary/30 transition-colors h-[85%] rounded-t-sm border-t-2 border-primary"></div>
+<div class="flex-1 bg-primary/30 hover:bg-primary/40 transition-colors h-[100%] rounded-t-sm border-t-2 border-primary"></div>
+</div>
+<div class="flex justify-between mt-md pt-md border-t border-outline-variant/10">
+<span class="font-label-caps text-[10px] text-on-surface-variant">May 01</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">May 15</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">May 30</span>
+</div>
+</div>
+<!-- Favorite APIs Bento Section -->
+<div class="col-span-12">
+<div class="flex items-center justify-between mb-lg mt-md">
+<h3 class="font-headline-sm text-on-surface">Favorite APIs</h3>
+<a class="text-primary font-body-sm hover:underline" href="#">Browse all APIs</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- API Card 1 -->
+<div class="bg-surface border border-outline-variant/30 p-lg rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col group cursor-pointer">
+<div class="w-12 h-12 mb-lg bg-white p-sm rounded-lg border border-outline-variant/20 shadow-sm">
+<img class="w-full h-full object-contain" data-alt="A clean, minimalist vector logo of a globally recognized payments platform, featuring iconic sans-serif typography in deep violet colors. Professional, fintech-inspired branding against a crisp white background with subtle depth and 16px corner radius." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClVM208dEIfJloH_F38EF3TkGfJJVyv-7fEVQ-NyxXZQpU_5uYE2p-2A1ujNE13GVpnbgPZsmm3uEpqsXYw7SvL19fFp94kGZHtzqflSJ44nRzaPAKXy7N0Dg9rkiUM0sOp5I-_guIKEcyf4BVZjdmbzDEaAYNZFDEzPdCubzolhBiGGri31FjYIo8vTJ_4Hg5-W1KkW1S-HvmSHKG5ciNPj2dUfiPVZEb3ZtokPrOIdauTvdoOdmF5CL-_ueJ0e4jlMFnhgz46cKA"/>
+</div>
+<h4 class="font-body-lg font-bold text-on-surface mb-xs">Stripe Payments</h4>
+<p class="text-body-sm text-on-surface-variant mb-xl">Integrated payment processing for internet businesses.</p>
+<div class="mt-auto flex items-center justify-between">
+<span class="bg-tertiary/10 text-tertiary px-sm py-xs rounded-full font-label-caps text-[10px]">Active</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+<!-- API Card 2 -->
+<div class="bg-surface border border-outline-variant/30 p-lg rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col group cursor-pointer">
+<div class="w-12 h-12 mb-lg bg-on-surface p-sm rounded-lg border border-outline-variant/20 shadow-sm">
+<img class="w-full h-full object-contain" data-alt="An abstract, geometric logo representing artificial intelligence and advanced neural networks. The design uses high-contrast black and white with minimal turquoise accents. Sleek, professional technological branding suitable for a cutting-edge developer tool interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTPEm_Xz7qxzkpyN09tRlkpqIckrxnA99aneruIqs78iKtj_DS2gYkTu7XHH3WB15dxfx3TMxvIiq0nsI8PpZkIe_ZBqNgpiq7Aucx8yFibTsaCvf6hEmZekSJkdsEqnWJG6OWpO372dBiE5us-9I-Bbng2d5SePczT9Zs95cUSUfxA45EqaOHOnF5zBnR8BY5hgQU1TXvUYENraIsxlQbEkfFD_GgJyVu2n947kqyV7vRTs1hl02lFnPBgjzx-Mcafsh58Ey4VffX"/>
+</div>
+<h4 class="font-body-lg font-bold text-on-surface mb-xs">OpenAI GPT-4</h4>
+<p class="text-body-sm text-on-surface-variant mb-xl">Large language model for text generation and reasoning.</p>
+<div class="mt-auto flex items-center justify-between">
+<span class="bg-primary/10 text-primary px-sm py-xs rounded-full font-label-caps text-[10px]">Connected</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+<!-- API Card 3 -->
+<div class="bg-surface border border-outline-variant/30 p-lg rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col group cursor-pointer">
+<div class="w-12 h-12 mb-lg bg-surface-container-high p-sm rounded-lg border border-outline-variant/20 shadow-sm">
+<img class="w-full h-full object-contain" data-alt="A minimalist tech logo for a search and discovery API. The logo features a stylized, vibrant orange magnifying glass integrated into a modern typographic design. Professional, energetic branding with clean lines and a contemporary tech startup aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwvniJ55BVn_bJcRzChDpKPNtb84-AXc5E-knnyPmnyEHzZJXmJycQocqd0AitfHRVoXgdN0WBkgJ5r8Udb6Q9elyrKqjSniTe8jqxn-4TDK0rLH9MN4J525mhCFnHjMWgz2Qvaxo8I92uX9YiUN_W-NKk5LoUpfi5MgLFxhv9OD1LXIRz32ov-jcqlO0UVOkyT0DJPzbvrLWbx0F6x-mkeEAbPAhjsRzBJDr3xnINSYP-3gm5F7F4VOQK6Tp_edqixJtpmGBMlCV-"/>
+</div>
+<h4 class="font-body-lg font-bold text-on-surface mb-xs">Algolia Search</h4>
+<p class="text-body-sm text-on-surface-variant mb-xl">Instant search results and discovery for web apps.</p>
+<div class="mt-auto flex items-center justify-between">
+<span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded-full font-label-caps text-[10px]">Testing</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+<!-- API Card 4 -->
+<div class="bg-surface-container-low border-2 border-dashed border-outline-variant/40 p-lg rounded-xl flex flex-col items-center justify-center text-center group cursor-pointer hover:bg-surface-variant/30 transition-colors">
+<div class="w-12 h-12 mb-md bg-white/50 text-on-surface-variant flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</div>
+<p class="font-body-md font-bold text-on-surface-variant">Add New API</p>
+<p class="text-[12px] text-on-surface-variant/70">Connect another service</p>
+</div>
+</div>
+</div>
+<!-- Recent Activity Feed -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest border border-outline-variant/30 rounded-xl shadow-sm overflow-hidden">
+<div class="p-lg border-b border-outline-variant/10 flex justify-between items-center">
+<h3 class="font-body-lg font-bold text-on-surface">Recent Activity</h3>
+<button class="text-primary font-label-caps">Clear all</button>
+</div>
+<div class="p-0">
+<!-- Activity Item 1 -->
+<div class="flex items-center gap-md p-md hover:bg-surface-variant/20 transition-colors border-b border-outline-variant/5">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/10 text-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</div>
+<div class="flex-1">
+<p class="text-body-sm text-on-surface">Successfull request to <span class="font-bold">Stripe /v1/charges</span></p>
+<p class="text-[12px] text-on-surface-variant">2 minutes ago • ID: ch_3N5k0x...</p>
+</div>
+<span class="text-on-surface-variant font-code text-[12px]">200 OK</span>
+</div>
+<!-- Activity Item 2 -->
+<div class="flex items-center gap-md p-md hover:bg-surface-variant/20 transition-colors border-b border-outline-variant/5">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">key</span>
+</div>
+<div class="flex-1">
+<p class="text-body-sm text-on-surface">New API Key <span class="font-bold">"Dev-Environment-1"</span> created</p>
+<p class="text-[12px] text-on-surface-variant">15 minutes ago by you</p>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-on-surface">more_vert</button>
+</div>
+<!-- Activity Item 3 -->
+<div class="flex items-center gap-md p-md hover:bg-surface-variant/20 transition-colors border-b border-outline-variant/5">
+<div class="w-10 h-10 rounded-full bg-error-container/10 text-error flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+<div class="flex-1">
+<p class="text-body-sm text-on-surface">Failed request to <span class="font-bold">OpenAI /v1/chat</span></p>
+<p class="text-[12px] text-on-surface-variant">42 minutes ago • Rate limit exceeded</p>
+</div>
+<span class="text-error font-code text-[12px]">429 ERROR</span>
+</div>
+<!-- Activity Item 4 -->
+<div class="flex items-center gap-md p-md hover:bg-surface-variant/20 transition-colors">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/10 text-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</div>
+<div class="flex-1">
+<p class="text-body-sm text-on-surface">Successfully synced <span class="font-bold">Algolia Indices</span></p>
+<p class="text-[12px] text-on-surface-variant">1 hour ago • 4,200 objects</p>
+</div>
+<span class="text-on-surface-variant font-code text-[12px]">SYNCED</span>
+</div>
+</div>
+<div class="p-md bg-surface-container-low text-center">
+<button class="font-body-sm text-primary font-bold">View Full Audit Log</button>
+</div>
+</div>
+<!-- Quick Actions / Terminal -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
+<div class="bg-surface-container-highest border border-outline-variant/30 p-lg rounded-xl shadow-sm">
+<h3 class="font-body-lg font-bold text-on-surface mb-lg">Quick Actions</h3>
+<div class="flex flex-col gap-sm">
+<button class="w-full bg-primary-container text-white py-sm px-md rounded-xl font-body-sm font-bold flex items-center justify-between hover:bg-primary transition-all active:scale-[0.98]">
+<span class="flex items-center gap-sm">
+<span class="material-symbols-outlined">add_box</span>
+                                    Create New API
+                                </span>
+<kbd class="font-code text-[10px] opacity-70 px-sm py-xs bg-white/20 rounded">⌘N</kbd>
+</button>
+<button class="w-full bg-white border border-outline-variant/30 text-on-surface-variant py-sm px-md rounded-xl font-body-sm hover:border-primary hover:text-primary transition-all flex items-center gap-sm">
+<span class="material-symbols-outlined">upgrade</span>
+                                Upgrade Plan
+                            </button>
+<button class="w-full bg-white border border-outline-variant/30 text-on-surface-variant py-sm px-md rounded-xl font-body-sm hover:border-primary hover:text-primary transition-all flex items-center gap-sm">
+<span class="material-symbols-outlined">description</span>
+                                View Docs
+                            </button>
+</div>
+</div>
+<!-- API Terminal Mini Component -->
+<div class="bg-[#0F172A] p-lg rounded-xl shadow-xl overflow-hidden flex flex-col min-h-[220px]">
+<div class="flex items-center gap-xs mb-md">
+<div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
+<div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+<div class="w-3 h-3 rounded-full bg-[#27C93F]"></div>
+<span class="ml-sm text-[#94A3B8] font-code text-[12px]">test-request.sh</span>
+</div>
+<div class="font-code text-code flex-1 text-slate-300">
+<div class="flex gap-sm">
+<span class="text-[#818CF8]">$</span>
+<span>curl -X POST https://api.apihub.com/v1/auth</span>
+</div>
+<div class="pl-sm border-l border-slate-700 mt-xs mb-xs">
+<span class="text-slate-500"># Authenticating with production keys...</span>
+</div>
+<div class="flex gap-sm">
+<span class="text-[#34D399]">✓</span>
+<span class="text-[#34D399]">200 OK</span>
+</div>
+<div class="text-[#94A3B8] text-[12px] mt-sm">
+                                { "status": "success", "latency": "42ms" }
+                            </div>
+</div>
+<div class="mt-lg pt-sm border-t border-slate-800 flex justify-between items-center">
+<span class="text-[10px] text-slate-500 font-code">Geist Mono v1.0</span>
+<button class="text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Navigation (Visible on mobile only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-xl border-t border-outline-variant/30 flex justify-around py-md z-50">
+<a class="flex flex-col items-center gap-xs text-primary" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center gap-xs text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-[10px] font-label-caps">Explore</span>
+</a>
+<a class="flex flex-col items-center gap-xs text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">api</span>
+<span class="text-[10px] font-label-caps">My APIs</span>
+</a>
+<a class="flex flex-col items-center gap-xs text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-label-caps">Settings</span>
+</a>
+</nav>
+<!-- Interactions Script -->
+<script>
+        // Simple Micro-interaction: Update welcome message based on time of day
+        document.addEventListener('DOMContentLoaded', () => {
+            const hour = new Date().getHours();
+            const welcomeText = document.querySelector('h1');
+            let greeting = 'Welcome back, Jane!';
+            
+            if (hour < 12) greeting = 'Good morning, Jane!';
+            else if (hour < 18) greeting = 'Good afternoon, Jane!';
+            else greeting = 'Good evening, Jane!';
+            
+            if (welcomeText) welcomeText.textContent = greeting;
+
+            // Simple click effect for stats cards
+            const cards = document.querySelectorAll('.bg-surface-container-lowest');
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    card.classList.add('scale-[0.98]');
+                    setTimeout(() => card.classList.remove('scale-[0.98]'), 100);
+                });
+            });
+        });
+    </script>
+</body></html>
