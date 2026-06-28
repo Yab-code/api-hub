@@ -142,3 +142,15 @@ CREATE INDEX IF NOT EXISTS idx_request_history_user_id ON request_history(user_i
 CREATE INDEX IF NOT EXISTS idx_request_history_api_id ON request_history(api_id);
 CREATE INDEX IF NOT EXISTS idx_api_health_api_id ON api_health(api_id);
 CREATE INDEX IF NOT EXISTS idx_audit_logs_user_id ON audit_logs(user_id);
+
+-- Added columns for detailed API metadata
+ALTER TABLE apis ADD COLUMN IF NOT EXISTS homepage VARCHAR(255);
+ALTER TABLE apis ADD COLUMN IF NOT EXISTS doc_url VARCHAR(255);
+ALTER TABLE apis ADD COLUMN IF NOT EXISTS auth_type VARCHAR(100);
+ALTER TABLE apis ADD COLUMN IF NOT EXISTS https_supported BOOLEAN DEFAULT FALSE;
+ALTER TABLE apis ADD COLUMN IF NOT EXISTS cors_support VARCHAR(50);
+ALTER TABLE apis ADD COLUMN IF NOT EXISTS tags TEXT[];
+ALTER TABLE apis ADD COLUMN IF NOT EXISTS date_imported TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE apis ADD COLUMN IF NOT EXISTS last_checked TIMESTAMP;
+ALTER TABLE apis ADD COLUMN IF NOT EXISTS avg_response_time INTEGER;
+ALTER TABLE apis ADD COLUMN IF NOT EXISTS health_status VARCHAR(50) DEFAULT 'UNKNOWN';
